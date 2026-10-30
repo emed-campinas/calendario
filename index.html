@@ -31,6 +31,8 @@ body{background:var(--bg);color:var(--txt);font-family:var(--f);font-weight:400;
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 input,select,textarea{font:inherit;color:var(--txt)}
 ::placeholder{color:var(--mut);opacity:1}
+select option,select optgroup{background:#141b3d;color:#eef1ff}
+select optgroup{color:#9aa4c7;font-style:normal;font-weight:500}
 b,strong{font-weight:600}
 a{color:inherit;text-decoration:none}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -90,7 +92,6 @@ nav.tabs button.on{background:rgba(255,255,255,.13);color:#fff;box-shadow:inset 
 .lg.ambos i{background:linear-gradient(135deg,var(--c-manha) 50%,var(--c-tarde) 50%)}
 .search{margin-left:auto;display:flex;gap:8px}
 .search input,.search select{background:var(--card);border:1px solid var(--field);border-radius:12px;padding:8px 13px;outline:0;min-width:170px}
-.search input{min-width:280px}
 .search select option,.search select optgroup{background:#141b3d}
 .search input:focus,.search select:focus{border-color:var(--blue)}
 
@@ -208,8 +209,23 @@ main{padding:6px 0 40px;outline:0}
 
 /* ---------- ano ---------- */
 .year{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
-.mini{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;transition:.4s;position:relative;overflow:hidden;text-align:left;display:block;width:100%}
-.mini:hover{transform:translateY(-4px);background:var(--card2);border-color:rgba(255,255,255,.22)}
+.mini{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;transition:.4s;position:relative;display:block}
+.mini:hover{background:var(--card2);border-color:rgba(255,255,255,.22)}
+.mh{font-weight:500;font-size:15px;border-radius:8px;padding:2px 8px;margin:-2px -8px;transition:.3s}
+.mh:hover{background:rgba(255,255,255,.12)}
+.md{cursor:pointer;transition:.2s;padding:0;min-width:0;min-height:0!important;width:100%;line-height:1}
+.mg{min-width:0}
+.md:hover,.md:focus-visible{outline:2px solid rgba(255,255,255,.7);outline-offset:1px;transform:scale(1.18);z-index:2;position:relative}
+.tip{position:fixed;z-index:55;pointer-events:none;background:rgba(16,22,52,.98);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:210px;max-width:310px;box-shadow:0 18px 44px rgba(0,0,0,.5);animation:pop .15s ease}
+.tip h5{font-size:11.5px;letter-spacing:1.2px;color:var(--mut);font-weight:500;margin-bottom:6px;text-transform:uppercase}
+.tip>div{display:flex;gap:8px;align-items:baseline;margin-top:5px;font-size:13.5px}
+.tip .dot{transform:translateY(0)}
+.cell.sel{border-color:#fff;box-shadow:0 0 0 1px #fff}
+.dpan{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;animation:fadeUp .4s ease}
+.dph{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}
+.dph b{font-weight:500;font-size:16px}.dph span{color:var(--mut);font-size:12.5px}
+.ag-ev .ib{flex:1;min-width:0}
+.ag-ev .ib small{display:block;color:var(--mut);font-size:12.5px;font-weight:400;margin-top:1px}
 .mini h4{font-size:15px;font-weight:500;margin-bottom:8px;display:flex;justify-content:space-between}
 .mini h4 small{color:var(--mut);font-weight:400;font-size:12px}
 .mg{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
@@ -270,6 +286,133 @@ main{padding:6px 0 40px;outline:0}
 .footrow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin:0 0 30px;color:var(--mut);font-size:13px}
 .footrow button{padding:8px 10px;border-radius:8px;color:var(--mut);font-size:13px}
 .footrow button:hover{color:#fff;background:var(--card)}
+
+/* ---------- Ed. Física: datas animadas ---------- */
+.qcard{transition:transform .3s,border-color .3s,box-shadow .3s}
+.qcard:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.28);box-shadow:0 14px 34px rgba(0,0,0,.3)}
+.qds{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.qd{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:54px;padding:7px 10px;border-radius:14px;background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 30%,transparent);line-height:1.1;cursor:default;transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background .28s,border-color .28s;outline:0}
+.qd b{font-size:18px;font-weight:500}.qd small{font-size:10.5px;letter-spacing:1px;color:var(--mut)}
+.qd:hover,.qd:focus-visible{transform:translateY(-5px) scale(1.12);background:color-mix(in srgb,var(--c) 34%,transparent);border-color:var(--c);box-shadow:0 12px 26px color-mix(in srgb,var(--c) 35%,transparent)}
+.qd.next{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange),0 0 16px rgba(255,138,31,.3)}
+.qd.past{opacity:.45}.qd.past:hover{opacity:1}
+/* ---------- reservas do laboratório ---------- */
+.rg{display:grid;gap:6px;min-width:0}
+.rgr{display:grid;grid-template-columns:104px repeat(var(--n),minmax(0,1fr));gap:6px;align-items:stretch}
+.rgl{padding:8px 6px;color:var(--mut);font-size:13px;display:flex;flex-direction:column;justify-content:center}
+.rgl b{color:#fff;font-weight:500}.rgl small{font-size:11.5px}
+.rgh{text-align:center;padding:2px 4px 6px}.rgh b{display:block;color:#fff;font-weight:500}.rgh small{display:block;color:var(--mut);margin-bottom:6px;font-size:12.5px}
+.rgh.tod b{color:var(--orange)}.rgh.blk{opacity:.9}
+.rgi{grid-column:2/-1;text-align:center;font-size:12px;color:var(--mut);padding:4px 10px;border-radius:12px;border:1px dashed var(--line);background:rgba(255,255,255,.02)}
+.rgr.iv .rgl{padding:2px 6px}
+.rcell{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:12px;min-height:50px;padding:6px}
+.rg{min-width:520px}
+.rt th{vertical-align:top}.rt thead th{text-align:center;padding-bottom:8px}.rt thead th b{display:block;color:#fff;font-weight:500}.rt thead th small{display:block;font-weight:400;margin-bottom:6px}
+.rt thead th.tod b{color:var(--orange)}
+.rt thead th.blk{opacity:.85}.rt .bm{display:block;font-size:12px;color:var(--c-prof);font-weight:500;line-height:1.3}
+.rvall{font-size:12px;padding:4px 10px}
+.rcell{height:auto!important;min-height:62px;padding:6px!important}
+.rcell.off{background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 8px,rgba(255,255,255,.015) 8px 16px)!important;border-style:dashed!important}
+.rv{display:block;width:100%;text-align:left;padding:5px 9px;margin-bottom:4px;border-radius:9px;background:rgba(74,151,255,.2);border:1px solid rgba(74,151,255,.4);font-size:12.5px;font-weight:500;transition:.25s}
+.rv:hover{background:rgba(74,151,255,.36);transform:translateY(-1px)}.rv.me{background:rgba(255,178,31,.24);border-color:rgba(255,178,31,.6)}
+.rv em{font-style:normal;color:var(--mut);font-weight:400}
+.rvadd{width:100%;padding:3px 0;border-radius:9px;border:1px dashed var(--field);color:var(--mut);font-size:15px;opacity:.55;transition:.25s}
+.rcell:hover .rvadd,.rvadd:focus-visible{opacity:1;color:#fff;background:rgba(255,255,255,.08)}
+@media(pointer:coarse){.rvadd{opacity:1}}
+@media(max-width:700px){.rg{min-width:0}.rgr{grid-template-columns:78px repeat(var(--n),minmax(0,1fr))}}
+
+/* ---------- horários ---------- */
+.subnav{display:flex;justify-content:center;padding-top:14px}
+.tchips{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:10px 0}
+.tchips .lbl{font-size:11.5px;letter-spacing:1.4px;color:var(--mut);text-transform:uppercase;min-width:92px}
+.thead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:16px 0 8px}
+.thead h3{font-size:22px;font-weight:500}
+.sala{color:var(--mut);font-size:14px}.sala input{margin-left:6px;width:130px;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid var(--field);outline:0}
+.ttw{overflow-x:auto;border-radius:16px}
+.tt{width:100%;border-collapse:separate;border-spacing:4px;table-layout:fixed;min-width:560px}
+.tt th{font-weight:500;font-size:13px;color:var(--mut);text-align:left;padding:8px 10px}
+.tt thead th{text-align:center;letter-spacing:.5px}
+.tt thead th.tod{color:var(--orange)}
+.tt tbody th b{display:block;color:#fff;font-weight:500}.tt tbody th small{display:block;font-size:11.5px;font-weight:400}
+.tt td{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:13px;vertical-align:top;height:62px;position:relative;transition:.25s}
+.tt td b{display:block;font-weight:500;font-size:13.5px;line-height:1.25}
+.tt td .pr{display:block;margin-top:2px;color:rgba(238,241,255,.78);font-size:12px}
+.tt td .lk,.lk{cursor:pointer;text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:2px}
+.tt td .lk:hover,.lk:hover{color:#fff;text-decoration-color:#fff}
+.tt td[role=button]{cursor:pointer}.tt td[role=button]:hover{background:rgba(255,255,255,.11)}
+.tt td.now{outline:2px solid var(--orange);box-shadow:0 0 18px rgba(255,138,31,.25)}
+.tt tr.iv td{height:auto;padding:4px 10px;text-align:center;font-size:12px;color:var(--mut);background:rgba(255,255,255,.02);border-style:dashed}
+.tt tr.iv th{padding:2px 10px}
+.mut{color:var(--mut)}
+.ar-LGG{background:rgba(255,140,60,.16)!important}.ar-MAT{background:rgba(74,151,255,.18)!important}.ar-CNT{background:rgba(46,230,166,.15)!important}.ar-CHS{background:rgba(255,214,90,.14)!important}.ar-FTP{background:rgba(181,131,255,.18)!important}
+.tt td.proj{background:rgba(255,92,168,.12)}
+.tt td.pl{background:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 6px,rgba(255,255,255,.02) 6px 12px)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:12.5px;color:var(--mut)}
+.leg span{display:flex;align-items:center;gap:6px}.leg i{width:14px;height:14px;border-radius:5px;display:inline-block;background:rgba(255,255,255,.1)}
+.leg i.pl{background:repeating-linear-gradient(135deg,rgba(255,255,255,.25) 0 3px,rgba(255,255,255,.05) 3px 6px)}
+.agora-box{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:6px 0 12px;padding:12px 16px;border-radius:14px;background:rgba(255,138,31,.1);border:1px solid rgba(255,138,31,.4)}
+.agora-box span{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--orange)}.agora-box b{font-weight:500;font-size:16px}
+.agg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:8px}
+.ag{padding:12px 14px;border-radius:14px;border:1px solid var(--line);font-size:14px}
+.agh{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px}.agh span{color:var(--mut);font-size:12.5px}
+.fld.sm{margin:0;min-width:130px}.fld.sm input,.fld.sm select{padding:8px 12px}
+.dchips{margin:8px 0}.dchips button{flex:1;text-align:center}
+@media(max-width:700px){.tt{min-width:0}.tt td{height:auto;min-height:58px}.thead h3{font-size:19px}.tchips .lbl{min-width:0;width:100%}.tchips .seg button{font-size:12.5px;padding:7px 10px}}
+
+/* ---------- escalas ---------- */
+.lnk{color:#8fbaff;text-decoration:underline;font-size:inherit;padding:0 4px;text-transform:none;letter-spacing:0;font-weight:500}
+.eu{color:var(--mut);font-size:13.5px}.eu b{color:#fff;font-weight:500}
+.card.mine{margin-top:18px}
+.mrow{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.aviso{display:flex;gap:12px;align-items:center;padding:10px 12px;margin:0 -12px 8px;border-radius:12px;background:rgba(255,178,31,.12);border:1px solid rgba(255,178,31,.3)}
+.aviso .ab{flex:1;font-size:14px;cursor:pointer}
+.escard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:12px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.escard.mine{border-color:rgba(255,178,31,.6)}
+.escard.past{opacity:.62}
+.escd{display:flex;gap:14px;align-items:center;cursor:pointer;border-radius:12px;padding:4px;transition:.3s}
+.escd:hover{background:rgba(255,255,255,.05);transform:translateX(4px)}
+.escd .ib{flex:1;min-width:0}.escd small{display:block;color:var(--mut);font-size:12.5px}
+.atv{margin:10px 0 2px;font-size:14px}
+.tbd{display:inline-block;padding:3px 10px;border-radius:999px;background:rgba(255,178,31,.14);color:var(--c-prof);font-size:12.5px;font-weight:500}
+.eb{margin-top:10px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.eb.mine{border-color:rgba(255,178,31,.55);background:rgba(255,178,31,.07)}
+.eb.ed{margin-top:12px}
+.ebh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 12px;margin-bottom:6px}
+.ebh span{color:var(--mut);font-size:13px}
+.ebo{color:var(--mut);font-size:13px;margin-bottom:6px}
+.pcs{display:flex;flex-wrap:wrap;gap:6px}
+.pc{padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.09);font-size:12.5px}
+.pc.me{background:rgba(255,178,31,.28);color:#ffe0a0;font-weight:600}
+.pc button{margin-left:4px;color:var(--mut);min-height:0!important}
+.escbox{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.escbox h3{font-size:12px;letter-spacing:1.4px;color:var(--mut);font-weight:500;text-transform:uppercase;margin-bottom:4px}
+.warnbox{margin:10px 0;padding:10px 14px;border-radius:12px;background:rgba(255,178,31,.12);border:1px solid rgba(255,178,31,.4);color:#ffe0a0;font-size:13.5px}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 12px;border-radius:12px;background:var(--card);margin-bottom:6px;text-align:left;width:100%}
+.prow small{display:block;color:var(--mut);font-size:12.5px}
+.prow.off{opacity:.55}
+button.prow:hover{background:var(--card2)}
+.seg.sm button{padding:6px 10px;font-size:12.5px}
+.eb .two{align-items:start}
+.pc em{font-style:normal;color:var(--mut);font-weight:400}
+.pc.me em{color:#ffd9a0}
+.team{display:grid;gap:6px;margin-bottom:8px}
+.prs{display:flex;gap:8px;align-items:center;padding:4px 4px 4px 12px;border-radius:12px;background:rgba(255,255,255,.05)}
+.prs .pn{flex:0 1 190px;min-width:0;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prs .nota{flex:1;min-width:0;padding:7px 10px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13.5px;outline:0}
+.prs .nota:focus{border-color:#fff}
+.prs button{width:36px;height:36px;border-radius:10px;color:var(--mut);flex:none}
+.prs button:hover{background:var(--card2);color:#fff}
+.pick{margin-top:10px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.pks{width:100%;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid var(--field);outline:0;margin-bottom:6px}
+.pkg{max-height:260px;overflow:auto}
+.pkh{display:flex;justify-content:space-between;align-items:center;margin:10px 0 6px;font-size:11.5px;letter-spacing:1.2px;color:var(--mut);text-transform:uppercase}
+.pkh button{font-size:12px;color:#8fbaff;text-decoration:underline;text-transform:none;letter-spacing:0;padding:2px 6px}
+.pkc{display:flex;flex-wrap:wrap;gap:6px}
+.pk{padding:6px 12px;border-radius:999px;border:1px solid var(--field);background:rgba(255,255,255,.04);font-size:13px;transition:.2s}
+.pk:hover{background:var(--card2)}
+.pk.on{background:rgba(46,230,166,.18);border-color:var(--c-manha)}
+#btEscF.on{background:rgba(255,178,31,.25);border-color:var(--c-prof)}
+@media(max-width:700px){.escd .ib .it{font-size:15px}.aviso{flex-wrap:wrap}.eb .two{grid-template-columns:1fr}.ebh span{font-size:12.5px}}
 
 /* ---------- relógio para escolher horário ---------- */
 .tf{position:relative}.tf input{padding-right:50px}
@@ -355,6 +498,24 @@ main{padding:6px 0 40px;outline:0}
   .demoBar{margin-top:18px}
 }
 /* telas de toque: alvos de pelo menos 44 px */
+.hl{margin-left:auto;display:inline-flex;gap:2px;text-transform:none;letter-spacing:0}
+.card h3{flex-wrap:wrap}
+.fpanel{display:flex;flex-direction:column;gap:10px;width:100%}
+.fbtn{align-self:flex-start}
+.search input{min-width:340px}
+@media(min-width:1001px){.chip{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}}
+@media(max-width:700px){
+  .year,.bimstrip{grid-template-columns:repeat(2,minmax(0,1fr))}.mini{min-width:0;padding:12px}.mini h4{flex-wrap:wrap;gap:2px 6px}
+  .search{flex-direction:column}.search input,.search select{min-width:0!important;max-width:none!important;width:100%}
+  .brand{min-height:44px;padding-right:6px}
+  .mh{min-height:44px;padding:10px 8px;margin:-10px -8px}
+  .rvadd{min-height:40px}.rv{min-height:40px;display:flex;align-items:center}
+  .tt td .lk,.ag .lk,.agora-box .lk,.lk{display:inline-block;padding:13px 4px}
+  .lnk{min-height:40px;padding:0 10px}
+  .demoBar input{min-height:44px}
+  .md{font-size:9px}
+  .qa button{min-height:44px}
+}
 @media(pointer:coarse){.btn,.seg button,.lg,.pill,.tools button,.qa button,.footrow button,.pop button,.toast button{min-height:44px}.x{width:44px;height:44px}.chip{min-height:30px}.dnum{min-height:34px}}
 </style>
 </head>
@@ -368,7 +529,7 @@ main{padding:6px 0 40px;outline:0}
     <span class="title">Calendário EMED <b>2027</b><small>ENSINO MÉDIO · CAMPINAS</small></span>
   </a>
   <nav class="tabs" id="tabs" aria-label="Principal">
-    <button data-v="inicio" class="on" aria-current="page">Início</button><button data-v="mes">Mês</button><button data-v="agenda">Lista</button><button data-v="ano">Ano</button>
+    <button data-v="inicio" class="on" aria-current="page">Início</button><button data-v="cal">Calendário</button><button data-v="esc">Escalas</button><button data-v="hor">Horários</button><button data-v="res">Reservas</button>
   </nav>
   <div class="actions">
     <button class="coordtag" id="coordTag" hidden>🔓 Modo coordenação · sair</button>
@@ -379,6 +540,7 @@ main{padding:6px 0 40px;outline:0}
 <div class="wrap">
   <main id="main" tabindex="-1">
     <h1 class="sr-only">Calendário EMED 2027 – Senac Campinas</h1>
+    <div class="subnav" id="calsub" hidden></div>
     <div class="backrow" id="backRow" hidden><button class="btn ghost sm" id="backBtn"></button></div>
     <div class="filters" id="filters"></div>
     <div id="results"></div>
@@ -391,26 +553,32 @@ main{padding:6px 0 40px;outline:0}
       </div>
       <div class="grid" id="dows" aria-hidden="true"></div>
       <div class="grid" id="mgrid" role="group" aria-label="Dias do mês" style="margin-top:6px"></div>
+      <div id="dayPanel" aria-live="polite"></div>
     </section>
     <section class="view" id="v-agenda" aria-label="Lista"></section>
     <section class="view" id="v-ano" aria-label="Ano"></section>
+    <section class="view" id="v-esc" aria-label="Escalas"></section>
+    <section class="view" id="v-hor" aria-label="Horários"></section>
+    <section class="view" id="v-res" aria-label="Reservas"></section>
     <div class="demoBar" id="demoBar"></div>
   </main>
-  <footer class="footrow"><span>Senac Campinas · Ensino Médio</span><span><button id="installBtn">📲 Usar como app</button><button id="coordBtn">🔒 Área da coordenação</button></span></footer>
+  <footer class="footrow"><span>Senac Campinas · Ensino Médio</span><span><button id="installBtn">📲 Usar como app</button><button id="pessoasBtn" hidden>👥 Pessoas</button><button id="coordBtn">🔒 Área da coordenação</button></span></footer>
 </div>
 
 <button class="fab" id="fab" aria-label="Novo evento">+</button>
 <nav class="bottomnav" id="bnav" aria-label="Principal (celular)">
   <button data-v="inicio" class="on" aria-current="page"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Início</button>
-  <button data-v="mes"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Mês</button>
-  <button data-v="agenda"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg>Lista</button>
-  <button data-v="ano"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Ano</button>
+  <button data-v="cal"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendário</button>
+  <button data-v="esc"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c3 .2 5 2.6 5 5.8"/></svg>Escalas</button>
+  <button data-v="hor"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Horários</button>
+  <button data-v="res"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Reservas</button>
 </nav>
 
 <div class="shade" id="shade"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Detalhes" tabindex="-1" inert></aside>
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Formulário de evento" tabindex="-1" inert></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="tip" id="tip" role="tooltip" hidden></div>
 <svg width="0" height="0" aria-hidden="true"><defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a97ff"/><stop offset=".5" stop-color="#8d6bff"/><stop offset="1" stop-color="#ff8a1f"/></linearGradient></defs></svg>
 
 <script src="data.js"></script>
@@ -430,9 +598,10 @@ const fmt=s=>{const d=dt(s);return `${pad(d.getDate())}/${pad(d.getMonth()+1)}`}
 const fmtL=s=>{const d=dt(s);return `${DSEM_L[d.getDay()]}, ${d.getDate()} de ${MESES[d.getMonth()].toLowerCase()}`};
 const diff=(a,b)=>Math.round((dt(b)-dt(a))/864e5);
 const plural=(n,a,b)=>`${n} ${n===1?a:b}`;
-const state={view:'inicio',today:iso(new Date()),sim:false,cur:{y:2027,m:0},hidden:new Set(),q:'',turma:'',coord:false,lista:{range:'30',imp:false},dayOpen:null};
+const state={view:'inicio',today:iso(new Date()),sim:false,cur:{y:2027,m:0},hidden:new Set(),q:'',turma:'',coord:false,lista:{range:'30',imp:false},dayOpen:null,sel:null,eu:(()=>{try{return localStorage.getItem('emedEu')||null}catch(e){return null}})(),escF:{tipo:'sab',minha:false}};
 /* "hoje" vem do relógio do aparelho. Fora de 2027, as telas usam a data mais próxima dentro do ano para se posicionar. */
 const Y0='2027-01-01',Y1='2027-12-31';
+const CALV=['mes','agenda','ano'];
 const ref=()=>state.today<Y0?Y0:state.today>Y1?Y1:state.today;
 const clsOf=it=>it.kind==='ev'?it.turno:it.kind==='pa'?'pa':it.kind;
 const ORDER={fer:0,inst:1,prof:2,pa:3,manha:4,tarde:5,ambos:6};
@@ -451,7 +620,7 @@ function visible(it){
   return matchTurma(it);
 }
 const onDay=(k,all)=>ITEMS.filter(it=>it.start<=k&&it.end>=k&&(all||visible(it))).sort((a,b)=>ORDER[clsOf(a)]-ORDER[clsOf(b)]||a.title.localeCompare(b.title));
-const chip=it=>`<button class="chip ${clsOf(it)}" data-open="${it.id}" title="${esc(it.title)}" aria-label="${esc(it.title)} – ${TIPOS[clsOf(it)]}${it.imp?' – importante':''}">${it.imp?'<span class="star" aria-hidden="true">★</span>':''}${['ev','pa'].includes(it.kind)?`<span class="g" aria-hidden="true">${GL[it.turno]||''}</span>`:''}${esc(it.title)}</button>`;
+const chip=it=>`<button class="chip ${clsOf(it)}" data-open="${it.id}" title="${esc(it.title)}" aria-label="${esc(it.title)} – ${TIPOS[clsOf(it)]}${it.imp?' – importante':''}">${it.imp?'<span class="star" aria-hidden="true">★</span>':''}${esc(it.title)}</button>`;
 const shareHTML=()=>`<div class="menu"><button class="btn shareBtn" aria-haspopup="true">Compartilhar ▾</button><div class="pop">
   <button data-share="Imagem (PNG)">🖼️ Imagem<small>Arte limpa, pronta para o e-mail</small></button>
   <button data-share="PDF">📄 PDF<small>Para anexar</small></button>
@@ -496,6 +665,7 @@ function renderInicio(){
       <div><div class="stat" style="font-size:32px;font-weight:400">${ringTxt}</div><div class="sub" style="margin:8px 0 0">${ringSub}</div></div></div>
     </div>
   </div>
+  ${mineCard()}
   <div class="mid">
     <div class="card"><h3><span class="star" aria-hidden="true">★</span> Datas importantes · ${ib.n}º bimestre</h3>${imp}${il.length>6?`<div class="drow"><button class="btn sm" data-allimp>Ver todas (${il.length})</button></div>`:''}</div>
     <div class="stack">
@@ -516,7 +686,10 @@ function renderInicio(){
 function renderFilters(){
   const lg=Object.keys(TIPOS).map(k=>`<button class="lg ${k} ${state.hidden.has(k)?'off':''}" data-lg="${k}" aria-pressed="${!state.hidden.has(k)}" style="--c:var(--c-${k==='ambos'?'manha':k})"><i aria-hidden="true"></i>${TIPOS[k]}</button>`).join('');
   const sel=`<select id="fTurma" aria-label="Filtrar por turma"><option value="">Todas as turmas</option><optgroup label="EMED Manhã">${TURMAS.manha.map(t=>`<option ${state.turma===t?'selected':''}>${t}</option>`).join('')}</optgroup><optgroup label="EMED Tarde">${TURMAS.tarde.map(t=>`<option ${state.turma===t?'selected':''}>${t}</option>`).join('')}</optgroup></select>`;
-  $('#filters').innerHTML=`<div class="legend" role="group" aria-label="Tipos de evento"><span class="qa"><button data-all>Todos</button><button data-none>Nenhum</button></span>${lg}</div><div class="search" role="search"><input id="fQ" type="search" aria-label="Buscar evento, local ou professor" placeholder="${matchMedia('(max-width:700px)').matches?'Buscar…':'🔍 Buscar evento, local, professor…'}" value="${esc(state.q)}">${sel}</div>`;
+  const body=`<div class="legend" role="group" aria-label="Tipos de evento"><span class="qa"><button data-all>Todos</button><button data-none>Nenhum</button></span>${lg}</div><div class="search" role="search"><input id="fQ" type="search" aria-label="Buscar evento, local ou professor" placeholder="Buscar evento, local ou professor…" value="${esc(state.q)}">${sel}</div>`;
+  if(!matchMedia('(max-width:700px)').matches){$('#filters').innerHTML=body;return}
+  const n=state.hidden.size+(state.q?1:0)+(state.turma?1:0);
+  $('#filters').innerHTML=`<button class="btn fbtn" data-ftoggle aria-expanded="${!!state.fOpen}">Filtros${n?` · ${n} ativo${n>1?'s':''}`:''} ${state.fOpen?'▴':'▾'}</button>${state.fOpen?`<div class="fpanel">${body}</div>`:''}`;
 }
 function renderMes(dir){
   const {y,m}=state.cur; const first=new Date(y,m,1), off=(first.getDay()+6)%7, nd=new Date(y,m+1,0).getDate();
@@ -530,8 +703,45 @@ function renderMes(dir){
     const k=iso(new Date(y,m,day)); const all=onDay(k,true); const its=onDay(k); const we=(i%7)>=5;
     h+=`<div class="cell ${we?'we':''} ${all.some(x=>x.kind==='fer')?'isfer':''} ${k===state.today?'today':''}" data-day="${k}"><div class="num"><button class="dnum" data-daybtn="${k}" aria-label="${fmtL(k)}, ${its.length?plural(its.length,'item','itens'):'sem eventos'}">${day}</button></div>${its.slice(0,3).map(chip).join('')}${its.length>3?`<div class="more">+${its.length-3} mais</div>`:''}<div class="dots" aria-hidden="true">${its.slice(0,4).map(it=>`<i class="dot ${clsOf(it)}"></i>`).join('')}</div><span class="plus" aria-hidden="true">+</span></div>`;
   }
-  const g=$('#mgrid'); g.className='grid'; void g.offsetWidth; if(dir&&!RM)g.classList.add(dir>0?'swapL':'swapR'); g.innerHTML=h;
+  const g=$('#mgrid'); g.className='grid'; void g.offsetWidth; if(dir&&!RM)g.classList.add(dir>0?'swapL':'swapR'); g.innerHTML=h; renderDayPanel();
 }
+
+/* ---- celular: dia selecionado aparece embaixo da grade, sem abrir painel ---- */
+const isPhone=()=>matchMedia('(max-width:700px)').matches;
+function renderDayPanel(scroll){
+  const box=$('#dayPanel'); if(!isPhone()){box.innerHTML='';return}
+  const {y,m}=state.cur,nd=new Date(y,m+1,0).getDate(),pre=`${y}-${pad(m+1)}-`;
+  if(!state.sel||!state.sel.startsWith(pre)){
+    const t=ref();
+    if(t.startsWith(pre))state.sel=t;
+    else{let f=null;for(let d=1;d<=nd&&!f;d++){const k=pre+pad(d);if(onDay(k).length)f=k}state.sel=f||pre+'01'}
+  }
+  const k=state.sel, its=onDay(k);
+  $$('#mgrid .cell').forEach(c=>c.classList.toggle('sel',c.dataset.day===k));
+  box.innerHTML=`<div class="dpan"><div class="dph"><b>${fmtL(k)}</b><span>${its.length?plural(its.length,'item','itens'):'Dia livre'}</span></div>`+
+   (its.map(it=>{const cl=clsOf(it),meta=[it.turmas,it.local,it.hora].filter(Boolean).join(' · ');return `<div class="ag-ev ${cl}" ${itemAttrs(it)}><span class="dot ${cl}" aria-hidden="true"></span><div class="ib"><b>${it.imp?'<span class="star" aria-hidden="true">★</span>':''}${esc(it.title)}</b>${meta?`<small>${esc(meta)}</small>`:''}</div></div>`}).join('')||'<p class="empty">Nada marcado neste dia.</p>')+
+   `<div class="drow"><button class="btn sm" data-add="${k}">+ Novo evento neste dia</button></div></div>`;
+  if(scroll)box.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
+}
+/* ---- ano: caixinha com o que acontece no dia (passar o mouse ou focar) ---- */
+const canHover=matchMedia('(hover:hover)').matches;
+function showTip(btn){
+  const k=btn.dataset.daybtn,its=onDay(k,true),tip=$('#tip');
+  tip.innerHTML=`<h5>${fmtL(k)}</h5>`+(its.length?its.slice(0,6).map(it=>`<div class="${clsOf(it)}"><span class="dot ${clsOf(it)}" aria-hidden="true"></span><span>${it.imp?'★ ':''}${esc(it.title)}</span></div>`).join('')+(its.length>6?`<div class="rn">+${its.length-6} mais</div>`:''):'<div class="rn">Dia livre</div>');
+  tip.hidden=false;
+  const r=btn.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=Math.max(8,Math.min(innerWidth-w-8,r.left+r.width/2-w/2)),y=r.bottom+10;if(y+h>innerHeight-8)y=r.top-h-10;
+  tip.style.left=x+'px';tip.style.top=y+'px';
+}
+const hideTip=()=>{$('#tip').hidden=true};
+document.addEventListener('mouseover',e=>{if(!canHover)return;const b=e.target.closest&&e.target.closest('.md[data-daybtn]');if(b)showTip(b)});
+document.addEventListener('mouseout',e=>{if(e.target.closest&&e.target.closest('.md[data-daybtn]'))hideTip()});
+document.addEventListener('focusin',e=>{const b=e.target.closest&&e.target.closest('.md[data-daybtn]');if(b)showTip(b)});
+document.addEventListener('focusout',e=>{if(e.target.closest&&e.target.closest('.md[data-daybtn]'))hideTip()});
+addEventListener('scroll',hideTip,{passive:true});
+{let sx=0,sy=0;const g=document.getElementById('mgrid');
+ g.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+ g.addEventListener('touchend',e=>{const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)>70&&Math.abs(dy)<45)shiftMonth(dx<0?1:-1)},{passive:true})}
 
 /* =========================== LISTA / ANO =========================== */
 function listaRange(){
@@ -554,10 +764,10 @@ function renderLista(){
     const its=onDay(k).filter(it=>(it.start===k||(k===a&&it.start<a))&&(!L.imp||it.imp));
     if(!its.length)continue;
     const w=iso(monday(k));
-    if(w!==wk){wk=w;const ms=monday(k),me=new Date(ms);me.setDate(me.getDate()+6);h+=`<h3 class="wkh">Semana de ${ms.getDate()} a ${me.getDate()} de ${MESES[me.getMonth()].toLowerCase()}${w===iso(monday(T))?' · esta semana':''}</h3>`}
+    if(w!==wk){wk=w;const ms=monday(k),me=new Date(ms);me.setDate(me.getDate()+6);h+=`<h3 class="wkh">Semana de ${semanaTxt(ms,me)}${w===iso(monday(T))?' · esta semana':''}</h3>`}
     its.forEach((it,i)=>{n++;const cl=clsOf(it);const meta=[it.turmas,it.local,it.hora].filter(Boolean).join(' · ');
       h+=`<div class="lr ${cl} ${k===T?'today':''}" ${itemAttrs(it)}><div class="d" aria-hidden="true">${i===0?`<b>${d.getDate()}</b><span>${DSEM[(d.getDay()+6)%7]}</span>`:''}</div>
-      <div class="t">${it.imp?'<span class="star" aria-hidden="true">★</span>':''}${['ev','pa'].includes(it.kind)?`<span aria-hidden="true">${GL[it.turno]||''}</span> `:''}${esc(it.title)}${it.end!==it.start?`<small>até ${fmt(it.end)}</small>`:''}<span class="meta">${esc(meta)}</span></div>
+      <div class="t">${it.imp?'<span class="star" aria-hidden="true">★</span>':''}${esc(it.title)}${it.end!==it.start?`<small>até ${fmt(it.end)}</small>`:''}<span class="meta">${esc(meta)}</span></div>
       <div class="m">${esc(it.turmas||'—')}</div><div class="m">${esc(it.local||'—')}</div><div class="m">${esc(it.hora||'—')}</div></div>`});
   }
   $('#v-agenda').innerHTML=h+(n?'':'<p class="empty" style="text-align:center;margin-top:30px">Nada neste período com esses filtros.</p>');
@@ -567,9 +777,9 @@ function renderAno(){
   for(let m=0;m<12;m++){const off=(new Date(2027,m,1).getDay()+6)%7, nd=new Date(2027,m+1,0).getDate();let cells='';
     for(let i=0;i<off;i++)cells+='<div class="md"></div>';
     for(let d=1;d<=nd;d++){const k=iso(new Date(2027,m,d));const all=onDay(k);const fer=all.some(x=>x.kind==='fer');const evs=all.filter(x=>x.kind!=='fer');const top=evs.map(clsOf).sort((a,b)=>ORDER[a]-ORDER[b]);
-      cells+=`<div class="md ${fer?'fer':evs.length?'ev '+(top.find(c=>c==='ambos')||top[top.length-1]||top[0]):''} ${k===state.today?'today':''}" style="${evs.length&&!fer?`--c:var(--c-${top[0]==='ambos'?'manha':top[0]})`:''}">${d}</div>`}
+      cells+=`<button type="button" class="md ${fer?'fer':evs.length?'ev '+(top.find(c=>c==='ambos')||top[top.length-1]||top[0]):''} ${k===state.today?'today':''}" data-daybtn="${k}" tabindex="${all.length?0:-1}" aria-label="${fmtL(k)}, ${all.length?plural(all.length,'item','itens'):'sem eventos'}" style="${evs.length&&!fer?`--c:var(--c-${top[0]==='ambos'?'manha':top[0]})`:''}">${d}</button>`}
     const cnt=ITEMS.filter(i=>i.start.slice(5,7)==pad(m+1)&&visible(i)).length;
-    h+=`<button class="mini" data-month="${m}" aria-label="${MESES[m]}, ${plural(cnt,'item','itens')}. Abrir mês."><h4>${MESES[m]}<small>${plural(cnt,'item','itens')}</small></h4><div class="mg" aria-hidden="true">${cells}</div></button>`}
+    h+=`<div class="mini"><h4><button type="button" class="mh" data-month="${m}" aria-label="Abrir ${MESES[m]}">${MESES[m]} <span aria-hidden="true">›</span></button><small>${plural(cnt,'item','itens')}</small></h4><div class="mg">${cells}</div></div>`}
   $('#v-ano').innerHTML=h+'</div>';
 }
 
@@ -594,8 +804,9 @@ function openItem(id){
   const canEdit=!it.locked||state.coord;
   $('#drawer').innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button>${state.dayOpen?`<button class="btn ghost sm" data-backday>← Voltar ao dia</button><br>`:''}<span class="tag ${c}" style="--c:var(--c-${c==='ambos'?'manha':c})">${TIPOS[c]}</span><h2>${it.imp?'<span class="star" aria-label="Importante">★</span>':''}${esc(it.title)}</h2>
   <dl class="kv">${rows.map(r=>`<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join('')}</dl>
+  ${escHTML(it)}
   ${it.demo?'<div class="demo">Evento de <b>exemplo</b>, só para demonstrar como o calendário fica preenchido.</div>':''}
-  <div class="drow">${canEdit?`<button class="btn" data-imp="${id}">${it.imp?'★ Tirar destaque':'☆ Marcar como importante'}</button><button class="btn" data-edit="${id}">✏️ Editar</button><button class="btn" data-dup="${id}">⧉ Duplicar</button><button class="btn" data-del="${id}" style="color:#ff8a98">🗑 Excluir</button>`:'<span style="color:var(--mut);font-size:13.5px">🔒 Item institucional: só a coordenação edita.</span>'}</div>`;
+  <div class="drow">${canEdit?`${state.coord?`<button class="btn" data-escedit="${id}">👥 ${it.escala?'Editar':'Montar'} escala</button>`:''}<button class="btn" data-imp="${id}">${it.imp?'★ Tirar destaque':'☆ Marcar como importante'}</button><button class="btn" data-edit="${id}">✏️ Editar</button><button class="btn" data-dup="${id}">⧉ Duplicar</button><button class="btn" data-del="${id}" style="color:#ff8a98">🗑 Excluir</button>`:'<span style="color:var(--mut);font-size:13.5px">🔒 Item institucional: só a coordenação edita.</span>'}</div>`;
   open($('#drawer'),it.title);
 }
 function openDay(k){
@@ -625,7 +836,8 @@ const timeField=(id,label,val)=>`<div class="fld" id="f_${id}"><label for="${id}
 let clk=null;
 function openClock(id){
   const inp=document.getElementById(id);
-  const cur=parseTime(inp.value)||(id==='iH2'&&parseTime($('#iH1').value))||'08:00';
+  const pairId=id==='iH2'?'iH1':id.startsWith('bh2_')?'bh1_'+id.slice(4):null;
+  const cur=parseTime(inp.value)||(pairId&&parseTime(document.getElementById(pairId).value))||'08:00';
   const [h,m]=cur.split(':').map(Number);
   clk={id,inp,mode:'h',h,m,drag:false};
   let el=$('#clock');
@@ -699,14 +911,14 @@ function openForm(arg){
   <div class="fld" id="fTitle"><label for="iTitle">Nome do evento *</label><input id="iTitle" value="${esc(base.title||'')}" placeholder="Ex.: Visita ao MACC" aria-required="true" aria-describedby="eTitle"><div class="err" id="eTitle" role="alert">Dê um nome ao evento.</div></div>
   <div class="two"><div class="fld" id="fDate"><label for="iStart">Data *</label><input type="date" id="iStart" value="${base.start||''}" min="2027-01-01" max="2027-12-31" aria-required="true" aria-describedby="eDate"><div class="err" id="eDate" role="alert">Escolha a data.</div></div><div class="fld"><label for="iEnd">Até (opcional)</label><input type="date" id="iEnd" value="${base.end&&base.end!==base.start?base.end:''}"></div></div>
   ${base.id?'':`<div class="two"><div class="fld"><label for="iRep">Repetir</label><select id="iRep"><option value="0">Não repete</option><option value="7">Toda semana</option><option value="14">A cada 15 dias</option></select></div><div class="fld"><label for="iUntil">Repetir até</label><input type="date" id="iUntil" max="2027-12-31"></div></div>`}
-  <div class="fld" id="fTurno" role="group" aria-labelledby="lbTurno"><div class="lab" id="lbTurno">Turno *</div><div class="seg" id="sgTurno">${[['manha','☀ EMED Manhã'],['tarde','☾ EMED Tarde'],['ambos','◐ Manhã + Tarde']].map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="${form.turno===k}" class="${k==='ambos'?'ambos ':''}${form.turno===k?'on':''}" style="--c:var(--c-${k==='ambos'?'manha':k})">${l}</button>`).join('')}</div><div class="err" id="eTurno" role="alert">Escolha o turno.</div></div>
+  <div class="fld" id="fTurno" role="group" aria-labelledby="lbTurno"><div class="lab" id="lbTurno">Turno *</div><div class="seg" id="sgTurno">${[['manha','EMED Manhã'],['tarde','EMED Tarde'],['ambos','Manhã + Tarde']].map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="${form.turno===k}" class="${k==='ambos'?'ambos ':''}${form.turno===k?'on':''}" style="--c:var(--c-${k==='ambos'?'manha':k})">${l}</button>`).join('')}</div><div class="err" id="eTurno" role="alert">Escolha o turno.</div></div>
   <div class="fld" id="fTurmas" role="group" aria-labelledby="lbTurmas"><div class="lab" id="lbTurmas">Turmas <span class="tools"><button type="button" data-tall>Selecionar todas</button><button type="button" data-tnone>Limpar</button></span></div><div id="turmaBox">${turmaBox()}</div></div>
   <div class="fld" id="fTxt"><label for="iTxt" id="lTxt">Outra turma ou detalhe (opcional)</label><input id="iTxt" value="${esc(txt)}" placeholder="Ex.: grupo de 20 alunos"></div>
   <div class="two">${timeField('iH1','Horário (início)',tv(hs[0]))}${timeField('iH2','Horário (fim)',tv(hs[1]))}</div>
   <div class="two"><div class="fld"><label for="iLocal">Local</label><input id="iLocal" list="locais" value="${esc(base.local||'')}"><datalist id="locais"><option>Auditório<option>Pátio e Jardim<option>Biblioteca<option>Externo<option>Salas de aula<option>Lab 132</datalist></div><div class="fld"><label for="iProf">Professor(es)</label><input id="iProf" value="${esc(base.prof||'')}"></div></div>
   <div class="fld"><label for="iObs">Observações</label><textarea id="iObs" rows="2">${esc(base.obs||'')}</textarea></div>
-  <div class="fld" role="group" aria-labelledby="lbDest"><div class="lab" id="lbDest">Destaque</div><div class="seg"><button type="button" id="btImp" aria-pressed="${form.imp}" class="${form.imp?'on':''}" style="--c:var(--c-prof)">${form.imp?'★ Data importante':'☆ Marcar como data importante'}</button></div></div>
-  <div class="fld"><label for="iBy">Seu nome <span style="text-transform:none;letter-spacing:0;font-weight:400">(o navegador lembra)</span></label><input id="iBy" value="${esc((()=>{try{return localStorage.getItem('emedNome')||''}catch(e){return ''}})())}" placeholder="Para saber quem cadastrou" autocomplete="name"></div>
+  <div class="fld" role="group" aria-labelledby="lbDest"><div class="lab" id="lbDest">Destaque</div><div class="seg"><button type="button" id="btImp" aria-pressed="${form.imp}" class="${form.imp?'on':''}" style="--c:var(--c-prof)">${form.imp?'★ Data importante':'☆ Marcar como data importante'}</button>${state.coord?'<button type="button" id="btEscF" aria-pressed="false" style="--c:var(--c-prof)">☐ Montar escala ao salvar</button>':''}</div></div>
+  ${state.coord?'':`<div class="fld"><label for="iBy">Seu nome <span style="text-transform:none;letter-spacing:0;font-weight:400">(escolha na lista ou digite)</span></label><input id="iBy" list="dlPessoas" value="${esc(state.eu?pnome(state.eu):(()=>{try{return localStorage.getItem('emedNome')||''}catch(e){return ''}})())}" placeholder="Para saber quem cadastrou" autocomplete="off"><datalist id="dlPessoas">${PESSOAS.filter(p=>p.ativo).map(p=>`<option value="${esc(p.nome)}">`).join('')}</datalist></div>`}
   <div class="foot"><button class="btn" data-close>Cancelar</button><button class="btn cta" id="saveBtn">Salvar evento</button></div>`;
   open($('#modal'),base.id?'Editar evento':'Novo evento'); syncForm();
 }
@@ -725,17 +937,19 @@ function saveForm(){
   const bad2=(p1&&p2&&p2<=p1);$('#e_iH2').textContent=bad2?'O fim deve ser depois do início.':'Use o formato 14:40.';
   flag('#f_iH2',(!!t2&&!p2)||bad2,'#iH2');
   if(first){const el=$(first);el&&el.focus();return}
-  const by=$('#iBy').value.trim(); if(by)try{localStorage.setItem('emedNome',by)}catch(e){}
-  const h1=p1,h2=p2, tl=pt?form.tl.slice():[], tlTxt=$('#iTxt').value.trim();
+  const by=state.coord?'Coordenação':($('#iBy')?$('#iBy').value.trim():''); if(by&&!state.coord){try{localStorage.setItem('emedNome',by)}catch(e){};const pp=PESSOAS.find(p=>p.nome.toLowerCase()===by.toLowerCase());if(pp&&!state.eu)setEu(pp.id)}
+  const s0=seq, h1=p1,h2=p2, tl=pt?form.tl.slice():[], tlTxt=$('#iTxt').value.trim();
+  const cloneEsc=()=>form.escala&&!form.id?{escala:JSON.parse(JSON.stringify(form.escala))}:{};
   const data={title,kind:form.kind,turno:pt?form.turno:undefined,tl,tlTxt,start,end:$('#iEnd').value&&$('#iEnd').value>=start?$('#iEnd').value:start,turmas:turmasLabel(tl,tlTxt),local:$('#iLocal').value.trim(),hora:h1?(h2?`${h1} – ${h2}`:h1):(form.horaTxt||''),prof:$('#iProf').value.trim(),obs:$('#iObs').value.trim(),imp:form.imp,by:by||'Anônimo',demo:false,locked:['fer','inst','prof'].includes(form.kind)};
   if(form.id){Object.assign(ITEMS.find(x=>x.id===form.id),data);toast('Evento atualizado ✔')}
   else{
     const step=+($('#iRep')?.value||0),until=$('#iUntil')?.value; let n=0;
-    if(step&&until&&until>start){for(let d=dt(start);iso(d)<=until;d.setDate(d.getDate()+step)){const s=iso(d);ITEMS.push(Object.assign({id:'i'+(++seq)},data,{start:s,end:s}));n++}}
-    else ITEMS.push(Object.assign({id:'i'+(++seq)},data));
+    if(step&&until&&until>start){for(let d=dt(start);iso(d)<=until;d.setDate(d.getDate()+step)){const s=iso(d);ITEMS.push(Object.assign({id:'i'+(++seq)},data,{start:s,end:s},cloneEsc()));n++}}
+    else ITEMS.push(Object.assign({id:'i'+(++seq)},data,cloneEsc()));
     toast(n>1?`${n} eventos criados de uma vez ✔`:'Evento salvo ✔'); if(!RM)confetti();
   }
   closeAll(); const d=dt(start); state.cur={y:d.getFullYear(),m:d.getMonth()}; refresh();
+  if(form.escF)openEscEditor(form.id||'i'+(s0+1));
 }
 
 /* =========================== INTERAÇÃO =========================== */
@@ -745,12 +959,14 @@ function renderDemoBar(){
    (state.sim?`<span style="margin-left:auto"><label for="simDate">Data simulada para demonstração:</label> <input type="date" id="simDate" value="${state.today}"></span>`:`<span style="margin-left:auto">Hoje: ${fmtL(state.today)} (relógio do aparelho)</span>`);
 }
 function refresh(){
-  renderFilters();$('#filters').hidden=state.view==='inicio';
-  ({inicio:renderInicio,mes:renderMes,agenda:renderLista,ano:renderAno})[state.view]();
+  renderFilters();$('#filters').hidden=['inicio','esc','hor','res'].includes(state.view);
+  const sub=$('#calsub');sub.hidden=!CALV.includes(state.view);
+  if(!sub.hidden)sub.innerHTML=`<div class="seg" role="group" aria-label="Visão do calendário">${[['mes','Mês'],['agenda','Lista'],['ano','Ano']].map(([k,l])=>`<button class="${state.view===k?'on':''}" data-v="${k}" aria-pressed="${state.view===k}">${l}</button>`).join('')}</div>`;
+  ({inicio:renderInicio,mes:renderMes,agenda:renderLista,ano:renderAno,esc:renderEsc,hor:renderHor,res:renderRes})[state.view]();
   renderResults();renderBack();
 }
 function renderResults(){
-  const box=$('#results'); if(!((state.q||state.turma)&&state.view!=='inicio')){box.innerHTML='';return}
+  const box=$('#results'); if(!((state.q||state.turma)&&!['inicio','esc','hor','res'].includes(state.view))){box.innerHTML='';return}
   const list=ITEMS.filter(visible).sort((a,b)=>a.start.localeCompare(b.start));
   const groups=[],idx={};
   list.forEach(it=>{const k=it.title.toLowerCase()+'|'+clsOf(it);if(idx[k]==null){idx[k]=groups.length;groups.push([])}groups[idx[k]].push(it)});
@@ -765,8 +981,9 @@ function renderResults(){
 }
 function go(v,back){
   if(!back&&v!==state.view){hist.push({view:state.view,cur:{...state.cur}});if(hist.length>30)hist.shift()}
-  state.view=v;
-  $$('#tabs button,#bnav button').forEach(b=>{const on=b.dataset.v===v;b.classList.toggle('on',on);on?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current')});
+  state.view=v;if(CALV.includes(v))state.cal=v;
+  const tab=CALV.includes(v)?'cal':v;
+  $$('#tabs button,#bnav button').forEach(b=>{const on=b.dataset.v===tab;b.classList.toggle('on',on);on?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current')});
   $$('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
   document.title=v==='inicio'?'Calendário EMED 2027':`${VIEWNAME[v]} · Calendário EMED 2027`;
   refresh();window.scrollTo({top:0,behavior:RM?'auto':'smooth'})
@@ -794,7 +1011,67 @@ document.addEventListener('click',e=>{
   if(q('[data-close]')||t.id==='shade')return closeAll();
   if(q('[data-backday]'))return openDay(state.dayOpen);
   if(q('#backBtn'))return goBack();
-  if(el=q('[data-v]')){e.preventDefault();closeAll();return go(el.dataset.v)}
+  if(q('[data-eu-open]')){closeAll();return openEu()}
+  if(q('[data-eu-clear]')){setEu(null);state.escF.minha=false;closeAll();refresh();return toast('Pronto: você está vendo tudo, sem se identificar.')}
+  if(el=q('[data-eu]')){setEu(el.dataset.eu);closeAll();refresh();return toast('Pronto! Agora você vê suas escalas e avisos.')}
+  if(el=q('[data-aviso]')){seenAviso(el.dataset.aviso);return refresh()}
+  if(el=q('[data-escf]')){state.escF.tipo=el.dataset.escf;return refresh()}
+  if(q('[data-esc-minha]')){if(!state.eu)return openEu();state.escF.minha=!state.escF.minha;return refresh()}
+  if(el=q('[data-escedit]')){closeAll();return openEscEditor(el.dataset.escedit)}
+  if(q('[data-escpick]')){closeAll();return openEscPick()}
+  if(el=q('[data-escgo]'))return openEscEditor(el.dataset.escgo);
+  if(q('#pessoasBtn'))return openPessoas();
+  if(el=q('[data-addb]')){syncEd();ed.blocos.push({id:'b'+(++bseq),titulo:el.dataset.addb==='Em branco'?'':el.dataset.addb,hora:'',_h1:'',_h2:'',local:'',obs:'',equipe:[],notas:{}});return renderEd()}
+  if(el=q('[data-bdel]')){syncEd();ed.blocos.splice(+el.dataset.bdel,1);ed.pick=null;return renderEd()}
+  if(el=q('[data-bdup]')){syncEd();const i=+el.dataset.bdup,b=ed.blocos[i];ed.blocos.splice(i+1,0,Object.assign({},b,{id:'b'+(++bseq),equipe:b.equipe.slice(),notas:Object.assign({},b.notas)}));ed.pick=null;return renderEd()}
+  if(el=q('[data-rmp]')){syncEd();const [bi,pid]=el.dataset.rmp.split(':'),b=ed.blocos[+bi];b.equipe=b.equipe.filter(x=>x!==pid);delete b.notas[pid];return refreshTeam(+bi)}
+  if(el=q('[data-clearp]')){syncEd();const b=ed.blocos[+el.dataset.clearp];b.equipe=[];b.notas={};return refreshTeam(+el.dataset.clearp)}
+  if(el=q('[data-pickp]')){syncEd();const i=+el.dataset.pickp;ed.pick=ed.pick===i?null:i;ed.q='';return renderEd()}
+  if(el=q('[data-pk]')){syncEd();const [bi,pid]=el.dataset.pk.split(':'),b=ed.blocos[+bi],k=b.equipe.indexOf(pid);if(k>-1){b.equipe.splice(k,1);delete b.notas[pid]}else b.equipe.push(pid);return refreshTeam(+bi)}
+  if(el=q('[data-addgrp]')){syncEd();const [bi,g]=el.dataset.addgrp.split(':'),b=ed.blocos[+bi];PESSOAS.filter(p=>p.ativo&&p.grupo===g&&!b.equipe.includes(p.id)).forEach(p=>b.equipe.push(p.id));return refreshTeam(+bi)}
+  if(q('#escSave'))return saveEsc();
+  if(el=q('[data-ptoggle]')){const p=pessoa(el.dataset.ptoggle);p.ativo=!p.ativo;return renderPessoas()}
+  if(el=q('[data-pedit]')){pf=pf===el.dataset.pedit?null:el.dataset.pedit;pAdd=false;return renderPessoas()}
+  if(q('[data-padd]')){pAdd=!pAdd;pf=null;return renderPessoas()}
+  if(q('[data-pcancel]')){pf=null;pAdd=false;return renderPessoas()}
+  if(q('#pSave'))return savePessoa();
+  if(q('#btEscF')){form.escF=!form.escF;const b=$('#btEscF');b.setAttribute('aria-pressed',form.escF);b.classList.toggle('on',form.escF);b.textContent=form.escF?'☑ Montar escala ao salvar':'☐ Montar escala ao salvar';return}
+  if(q('[data-ftoggle]')){state.fOpen=!state.fOpen;return refresh()}
+  if(el=q('[data-rsem]')){const v=+el.dataset.rsem;state.res.sem=v===0?iso(monday(state.today<Y0?'2027-01-26':ref())):addDays(state.res.sem,7*v);return refresh()}
+  if(el=q('[data-rdia]')){state.res.dia=+el.dataset.rdia;return refresh()}
+  if(el=q('[data-radd]'))return openReserva(el.dataset.radd);
+  if(el=q('[data-rv]'))return openRv(el.dataset.rv);
+  if(el=q('[data-rt]')){rf.turno=el.dataset.rt;rf.slots=[];return updR()}
+  if(el=q('[data-rs]')){const s=+el.dataset.rs,k=rf.slots.indexOf(s);k>-1?rf.slots.splice(k,1):rf.slots.push(s);return updR()}
+  if(q('[data-rall]')){rf.slots=[0,1,2,3,4,5];return updR()}
+  if(q('[data-rnone]')){rf.slots=[];return updR()}
+  if(el=q('[data-rpp]')){rf.pids.push(el.dataset.rpp);rf.q='';const i=$('#rQ');if(i)i.value='';return updR()}
+  if(el=q('[data-rpr]')){rf.pids=rf.pids.filter(x=>x!==el.dataset.rpr);return updR()}
+  if(q('#rSave'))return saveReserva();
+  if(el=q('[data-rcancel]')){LAB.reservas=LAB.reservas.filter(x=>x.id!==el.dataset.rcancel);closeAll();refresh();return toast('Reserva cancelada')}
+  if(el=q('[data-rcancelgrp]')){LAB.reservas=LAB.reservas.filter(x=>x.grp!==el.dataset.rcancelgrp);closeAll();refresh();return toast('Reservas do período canceladas')}
+  if(q('[data-labcfg]'))return openLabCfg();
+  if(el=q('[data-ldia]')){const [t,d]=el.dataset.ldia.split(':'),L=LAB.dias[t],i=L.indexOf(+d);i>-1?L.splice(i,1):L.push(+d);L.sort();refresh();return openLabCfg()}
+  if(q('[data-lbadd]'))return addBloqueio();
+  if(el=q('[data-lbdel]')){LAB.bloqueios=LAB.bloqueios.filter(x=>x.id!==el.dataset.lbdel);rebuildBlk();refresh();return openLabCfg()}
+  if(el=q('[data-hmodo]')){state.hor.modo=el.dataset.hmodo;return refresh()}
+  if(el=q('[data-hturma]')){state.hor.turma=el.dataset.hturma;return refresh()}
+  if(el=q('[data-hprof]')){state.hor.modo='prof';state.hor.prof=el.dataset.hprof;return refresh()}
+  if(el=q('[data-hdia]')){state.hor.dia=+el.dataset.hdia;return refresh()}
+  if(el=q('[data-aedit]'))return openAula(el.dataset.aedit);
+  if(el=q('[data-plt]')){const [pid,turno,d,s]=el.dataset.plt.split('|'),L=HOR.planInd[pid]=HOR.planInd[pid]||[],i=L.findIndex(x=>x.turno===turno&&x.dia===+d&&x.slot===+s);i>-1?L.splice(i,1):L.push({turno,dia:+d,slot:+s});return refresh()}
+  if(q('[data-asimreset]')){state.hor.sim=null;return refresh()}
+  if(q('[data-planarea]'))return openPlanArea();
+  if(el=q('[data-pas]')){const [i,s]=el.dataset.pas.split(':').map(Number),x=HOR.planArea[i],k=x.slots.indexOf(s);k>-1?x.slots.splice(k,1):x.slots.push(s);x.slots.sort();return openPlanArea()}
+  if(el=q('[data-padel]')){HOR.planArea.splice(+el.dataset.padel,1);return openPlanArea()}
+  if(q('[data-padd2]')){HOR.planArea.push({area:'LGG',turno:'manha',dia:0,slots:[]});return openPlanArea()}
+  if(el=q('[data-qedit]'))return openQuadra(el.dataset.qedit);
+  if(el=q('[data-qdel]')){const z=QUADRA.find(x=>x.turma===qe);z.datas=z.datas.filter(x=>x!==el.dataset.qdel);syncQuadra(qe);return openQuadra(qe)}
+  if(q('[data-qadd]')){const v=$('#qNew').value;if(!v)return;const z=QUADRA.find(x=>x.turma===qe);if(!z.datas.includes(v))z.datas.push(v);syncQuadra(qe);return openQuadra(qe)}
+  if(q('[data-aclear]')){ae.disc='';ae.pid='';return saveAula()}
+  if(q('#aSave'))return saveAula();
+  if(el=q('[data-go-cal]')){const d=dt(el.dataset.goCal);state.cur={y:2027,m:d.getMonth()};return go('mes')}
+  if(el=q('[data-v]')){e.preventDefault();closeAll();const vv=el.dataset.v;return go(vv==='cal'?(state.cal||'mes'):vv)}
   if(el=q('[data-go]'))return go(el.dataset.go);
   if(q('[data-allimp]')){state.lista.range='bim';state.lista.imp=true;return go('agenda')}
   if(q('[data-new]')||q('#newBtn')||q('#fab')){closeAll();return openForm(state.today)}
@@ -807,6 +1084,7 @@ document.addEventListener('click',e=>{
   if(el=q('[data-jump]')){const it=ITEMS.find(x=>x.id===el.dataset.jump);const d=dt(it.start);state.cur={y:d.getFullYear(),m:d.getMonth()};go('mes');return openItem(it.id)}
   if(q('[data-clear]')){state.q='';state.turma='';return refresh()}
   if(el=q('[data-open]')){e.stopPropagation();return openItem(el.dataset.open)}
+  if(el=q('.md[data-daybtn]')){hideTip();return openDay(el.dataset.daybtn)}
   if(el=q('[data-month]')){state.cur={y:2027,m:+el.dataset.month};return go('mes')}
   if(el=q('[data-imp]')){const it=ITEMS.find(x=>x.id===el.dataset.imp);it.imp=!it.imp;toast(it.imp?'Marcado como importante ★':'Destaque removido');openItem(it.id);return refresh()}
   if(el=q('[data-edit]')){const it=ITEMS.find(x=>x.id===el.dataset.edit);closeAll();return openForm(Object.assign({},it))}
@@ -822,33 +1100,528 @@ document.addEventListener('click',e=>{
   if(q('[data-installnow]')&&deferredInstall){deferredInstall.prompt();return deferredInstall.userChoice.then(()=>{deferredInstall=null;closeAll()})}
   if(q('#installBtn'))return openInstall();
   if(el=q('[data-share]'))return toast(`“${el.dataset.share}” funciona na versão final, com o filtro atual ✨`);
-  if(q('#coordBtn')||q('#coordTag')){state.coord=!state.coord;$('#coordTag').hidden=!state.coord;$('#coordBtn').textContent=state.coord?'🔓 Sair da área da coordenação':'🔒 Área da coordenação';return toast(state.coord?'Modo coordenação ligado (na versão final pede senha)':'Modo coordenação desligado')}
+  if(q('#coordBtn')||q('#coordTag')){state.coord=!state.coord;$('#coordTag').hidden=!state.coord;$('#pessoasBtn').hidden=!state.coord;refresh();$('#coordBtn').textContent=state.coord?'🔓 Sair da área da coordenação':'🔒 Área da coordenação';return toast(state.coord?'Modo coordenação ligado (na versão final pede senha)':'Modo coordenação desligado')}
   if(q('#prev'))return shiftMonth(-1);
   if(q('#next'))return shiftMonth(1);
   if(q('#goToday')){state.cur={y:2027,m:dt(ref()).getMonth()};return renderMes()}
-  if(el=q('.cell[data-day]'))return openDay(el.dataset.day);
+  if(el=q('.cell[data-day]')){if(isPhone()){state.sel=el.dataset.day;return renderDayPanel(true)}return openDay(el.dataset.day)}
   if(el=q('.wd[data-day]'))return openDay(el.dataset.day);
 });
 document.addEventListener('input',e=>{if(e.target.id==='fQ'){state.q=e.target.value.trim().toLowerCase();const pos=e.target.selectionStart;refresh();const i=$('#fQ');i.focus();i.setSelectionRange(pos,pos)}});
 document.addEventListener('change',e=>{if(e.target.id==='fTurma'){state.turma=e.target.value;refresh()}if(e.target.id==='simDate'&&e.target.value){state.today=e.target.value;state.cur={y:2027,m:dt(ref()).getMonth()};refresh()}});
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){if(clk){closeClock();return}closeAll()}
-  if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role=button][data-open]')){e.preventDefault();openItem(e.target.dataset.open)}
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role=button]')){e.preventDefault();e.target.click()}
   if(state.view==='mes'&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){if(e.key==='ArrowLeft')shiftMonth(-1);if(e.key==='ArrowRight')shiftMonth(1)}
 });
 document.addEventListener('mousemove',e=>{
   const c=e.target.closest&&e.target.closest('.card,.wd,.cell,.mini');if(c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}
 });
 
+/* =========================== ESCALAS / PESSOAS =========================== */
+const pessoa=id=>PESSOAS.find(p=>p.id===id);
+const pnome=id=>{const p=pessoa(id);return p?p.nome:'(pessoa removida)'};
+const SAB_RE=/^(Sábado Letivo|Simulado ENEM)/;
+const REU_RE=/^(Reunião|Fala aí docente|Planejamento Coletivo)/;
+const isEsc=it=>!!it.escala||SAB_RE.test(it.title)||REU_RE.test(it.title);
+const escItems=()=>ITEMS.filter(isEsc).sort((a,b)=>a.start.localeCompare(b.start)||a.title.localeCompare(b.title));
+const euIn=it=>!!(state.eu&&it.escala&&it.escala.blocos.some(b=>b.equipe.includes(state.eu)));
+const getSeen=()=>{try{return new Set(JSON.parse(localStorage.getItem('emedVistos')||'[]'))}catch(e){return new Set()}};
+function seenAviso(id){const s=getSeen();s.add(id);try{localStorage.setItem('emedVistos',JSON.stringify([...s]))}catch(e){}}
+function setEu(id){state.eu=id;try{id?localStorage.setItem('emedEu',id):localStorage.removeItem('emedEu')}catch(e){}}
+if(state.eu&&!pessoa(state.eu))state.eu=null;
+const pcsHTML=(ids,notas)=>ids.map(id=>`<span class="pc ${id===state.eu?'me':''}">${esc(pnome(id))}${notas&&notas[id]?` <em>· ${esc(notas[id])}</em>`:''}</span>`).join('');
+const blocosHTML=e=>e.blocos.map(b=>`<div class="eb ${b.equipe.includes(state.eu)?'mine':''}"><div class="ebh"><b>${esc(b.titulo||'Bloco')}</b><span>${esc([b.hora,b.local].filter(Boolean).join(' · '))}</span></div>${b.obs?`<div class="ebo">${esc(b.obs)}</div>`:''}<div class="pcs">${b.equipe.length?pcsHTML(b.equipe,b.notas):'<span class="rn">Ninguém escalado ainda</span>'}</div></div>`).join('');
+const atvHTML=e=>e&&e.atividade?`<div class="atv"><b>Atividade:</b> ${esc(e.atividade)}</div>`:'';
+function escHTML(it){
+  if(!isEsc(it))return '';
+  const e=it.escala;
+  return `<div class="escbox"><h3>Escala</h3>${atvHTML(e)}${e&&e.blocos.length?blocosHTML(e):'<p class="empty">Escala ainda não definida pela coordenação.</p>'}</div>`;
+}
+const descB=(b,pid)=>[b.titulo,b.hora,b.local,b.notas&&b.notas[pid]].filter(Boolean).join(', ');
+function mineCard(){
+  if(state.coord)return '';
+  if(!state.eu)return `<div class="card mine"><h3>Minhas escalas</h3><div class="mrow"><p class="sub" style="margin:0">Escolha seu nome para ver suas escalas e receber avisos quando elas mudarem.</p><button class="btn" data-eu-open>Escolher meu nome</button></div></div>`;
+  const seen=getSeen(),av=AVISOS.filter(a=>a.pid===state.eu&&!seen.has(a.id)),T=ref();
+  const mine=escItems().filter(it=>euIn(it)&&it.end>=T).slice(0,3);
+  const avH=av.map(a=>`<div class="aviso"><span aria-hidden="true">🔔</span><div class="ab" ${a.evid?`role="button" tabindex="0" data-open="${a.evid}"`:''}>${esc(a.texto)}</div><button class="btn sm" data-aviso="${a.id}">Entendi</button></div>`).join('');
+  const mH=mine.map(it=>{const d=dt(it.start),bs=it.escala.blocos.filter(b=>b.equipe.includes(state.eu));return `<div class="item ${clsOf(it)}" ${itemAttrs(it)}><div class="db" aria-hidden="true"><b>${d.getDate()}</b><span>${MESES[d.getMonth()].slice(0,3).toUpperCase()}</span></div><div class="ib"><div class="it">${esc(it.title)}</div><small>${esc(bs.map(b=>descB(b,state.eu)).join(' | '))}</small></div><span class="cd">${when(it,state.today)}</span></div>`}).join('')||'<div class="empty">Você não está escalado(a) em nenhuma data à frente.</div>';
+  return `<div class="card mine"><h3>Minhas escalas · ${esc(pnome(state.eu))} <span class="hl"><button class="lnk" data-eu-open>trocar</button><button class="lnk" data-eu-clear>sair</button></span></h3>${avH}${mH}<div class="drow"><button class="btn sm" data-go="esc">Ver todas as escalas</button></div></div>`;
+}
+function renderEsc(){
+  const F=state.escF,T=ref();
+  const tipos=[['sab','Sábados letivos'],['reu','Reuniões'],['out','Outras'],['todos','Tudo']];
+  let list=escItems().filter(it=>F.tipo==='todos'||(F.tipo==='sab'?SAB_RE.test(it.title):F.tipo==='reu'?REU_RE.test(it.title):!SAB_RE.test(it.title)&&!REU_RE.test(it.title)));
+  if(F.minha&&state.eu)list=list.filter(euIn);
+  const eu=state.eu?`<span class="eu">Você: <b>${esc(pnome(state.eu))}</b> <button class="lnk" data-eu-open>trocar</button><button class="lnk" data-eu-clear>sair</button></span>`:`<button class="btn sm" data-eu-open>Escolher meu nome</button>`;
+  let h=`<h2 class="sr-only">Escalas</h2><div class="lbar"><div class="seg" role="group" aria-label="Tipo de escala">${tipos.map(([k,l])=>`<button class="${F.tipo===k?'on':''}" data-escf="${k}" aria-pressed="${F.tipo===k}">${l}</button>`).join('')}</div><button class="btn ${F.minha?'':'ghost'}" data-esc-minha aria-pressed="${F.minha}" style="${F.minha?'border-color:var(--c-prof);color:var(--c-prof)':''}">⭐ Só a minha escala</button>${state.coord?'<button class="btn sm" data-escpick>+ Escala em outro evento</button>':''}<span class="sp">${eu}</span></div>`;
+  h+=list.map(it=>{
+    const d=dt(it.start),e=it.escala,cl=clsOf(it),past=it.end<T;
+    return `<article class="escard ${past?'past':''} ${euIn(it)?'mine':''}"><div class="escd ${cl}" ${itemAttrs(it)}><div class="db" aria-hidden="true"><b>${d.getDate()}</b><span>${MESES[d.getMonth()].slice(0,3).toUpperCase()}</span></div><div class="ib"><div class="it" style="font-size:16px">${euIn(it)?'<span class="star" aria-hidden="true">⭐</span>':''}${esc(it.title)}</div><small>${fmtL(it.start)}${past?' · já passou':''}${e&&e.blocos.length?'':' · escala ainda não definida'}</small></div></div>${atvHTML(e)}${e&&e.blocos.length?blocosHTML(e):''}${state.coord?`<div class="drow"><button class="btn sm" data-escedit="${it.id}">👥 ${e?'Editar':'Montar'} escala</button></div>`:''}</article>`;
+  }).join('')||`<p class="empty" style="text-align:center;margin-top:30px">${F.minha?(state.eu?'Você não está escalado(a) neste tipo de dia.':'Escolha seu nome para ver só a sua escala.'):'Nada por aqui.'}</p>`;
+  $('#v-esc').innerHTML=h;
+}
+function openEu(){
+  $('#modal').innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Quem é você?</h2><p class="note">Escolha seu nome para ver suas escalas e receber avisos. Fica salvo só neste aparelho. Você pode usar o calendário sem se identificar.</p><div class="fld"><label for="euq">Buscar</label><input id="euq" placeholder="Digite parte do nome" autocomplete="off"></div>${state.eu?'<div class="drow" style="margin:0 0 8px"><button class="btn sm" data-eu-clear>Não quero me identificar (ver tudo)</button></div>':''}<div id="eul"></div>`;
+  open($('#modal'),'Quem é você?');renderEuList('');
+}
+function renderEuList(q){
+  q=q.trim().toLowerCase();
+  $('#eul').innerHTML=GRUPOS.map(g=>{const ps=PESSOAS.filter(p=>p.ativo&&p.grupo===g&&p.nome.toLowerCase().includes(q));return ps.length?`<h3 class="wkh">${g}</h3>`+ps.map(p=>`<button type="button" class="prow" data-eu="${p.id}"><div><b>${esc(p.nome)}</b><small>${esc([p.funcao,p.area].filter(Boolean).join(' · '))}</small></div>${p.id===state.eu?'<span>✔ você</span>':''}</button>`).join(''):''}).join('')||'<p class="empty">Ninguém encontrado.</p>';
+}
+/* ---- escolher um evento para ganhar escala (coordenação) ---- */
+function openEscPick(){
+  $('#modal').innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Escala em outro evento</h2><p class="note">Escolha o evento que vai ter escala. Se ele ainda não existe, crie primeiro em “+ Novo evento” (marcando “Montar escala ao salvar”).</p><div class="fld"><label for="egq">Buscar evento</label><input id="egq" placeholder="Ex.: reunião, fechamento, alinhamento" autocomplete="off"></div><div id="egl"></div>`;
+  open($('#modal'),'Escala em outro evento');renderEgList('');
+}
+function renderEgList(q){
+  q=q.trim().toLowerCase();
+  const l=ITEMS.filter(i=>!i.escala&&i.kind!=='fer'&&(!q||i.title.toLowerCase().includes(q))&&i.end>=ref()).sort((a,b)=>a.start.localeCompare(b.start)).slice(0,40);
+  $('#egl').innerHTML=l.map(i=>`<button type="button" class="prow ${clsOf(i)}" data-escgo="${i.id}"><div><b>${esc(i.title)}</b><small>${fmtL(i.start)}</small></div><span>Montar ›</span></button>`).join('')||'<p class="empty">Nenhum evento encontrado.</p>';
+}
+/* ---- editor de escala (só coordenação) ---- */
+let ed=null;
+const loadB=b=>{const [a,c]=(b.hora||'').split(' – ');return Object.assign({},b,{_h1:b._h1??(a||''),_h2:b._h2??(c||''),equipe:b.equipe.slice(),notas:Object.assign({},b.notas||{})})};
+function openEscEditor(id){
+  if(!state.coord)return toast('Só a coordenação edita a escala.');
+  const it=ITEMS.find(x=>x.id===id),e=it.escala||{atividade:'',blocos:[]};
+  ed={id,atividade:e.atividade||'',blocos:e.blocos.map(loadB),pick:null,q:''};
+  renderEd(true);
+}
+function syncEd(){
+  if(!ed)return;
+  const a=$('#eAtv');if(a)ed.atividade=a.value;
+  ed.blocos.forEach((b,i)=>{
+    const g=f=>{const el=document.querySelector(`[data-bf="${f}"][data-bi="${i}"]`);return el?el.value:null};
+    const t=g('titulo');if(t!=null)b.titulo=t;const l=g('local');if(l!=null)b.local=l;const o=g('obs');if(o!=null)b.obs=o;
+    const h1=document.getElementById('bh1_'+i),h2=document.getElementById('bh2_'+i);if(h1)b._h1=h1.value.trim();if(h2)b._h2=h2.value.trim();
+  });
+  $$('[data-nota]').forEach(el=>{const [bi,pid]=el.dataset.nota.split(':');if(ed.blocos[+bi])ed.blocos[+bi].notas[pid]=el.value});
+}
+function edConf(){
+  const out=[],rng=b=>{const p1=parseTime(b._h1),p2=parseTime(b._h2);return p1&&p2?[p1,p2]:null};
+  for(let i=0;i<ed.blocos.length;i++)for(let j=i+1;j<ed.blocos.length;j++){
+    const a=rng(ed.blocos[i]),c=rng(ed.blocos[j]);if(!a||!c||!(a[0]<c[1]&&c[0]<a[1]))continue;
+    const sh=ed.blocos[i].equipe.filter(x=>ed.blocos[j].equipe.includes(x));
+    if(sh.length)out.push(`${sh.map(pnome).join(', ')} ${sh.length>1?'estão':'está'} em “${ed.blocos[i].titulo||'bloco '+(i+1)}” e em “${ed.blocos[j].titulo||'bloco '+(j+1)}” no mesmo horário.`);
+  }
+  return out;
+}
+const teamHTML=i=>{const b=ed.blocos[i];return b.equipe.map(id=>`<div class="prs"><span class="pn">${esc(pnome(id))}</span><input class="nota" data-nota="${i}:${id}" value="${esc(b.notas[id]||'')}" placeholder="turma, sala… (opcional)" aria-label="Detalhe de ${esc(pnome(id))}"><button type="button" data-rmp="${i}:${id}" aria-label="Remover ${esc(pnome(id))}">✕</button></div>`).join('')||'<span class="rn">Ninguém ainda</span>'};
+function pkList(i,q){
+  q=(q||'').trim().toLowerCase();const b=ed.blocos[i];
+  return GRUPOS.map(g=>{const ps=PESSOAS.filter(p=>p.ativo&&p.grupo===g&&p.nome.toLowerCase().includes(q));
+    return ps.length?`<div class="pkh"><span>${g}</span><button type="button" data-addgrp="${i}:${g}">+ Todos</button></div><div class="pkc">${ps.map(p=>`<button type="button" class="pk ${b.equipe.includes(p.id)?'on':''}" data-pk="${i}:${p.id}" aria-pressed="${b.equipe.includes(p.id)}">${b.equipe.includes(p.id)?'✓ ':''}${esc(p.nome)}</button>`).join('')}</div>`:''}).join('')||'<p class="empty">Ninguém encontrado.</p>';
+}
+function updConf(){const c=$('#econf');if(!c)return;const l=edConf();c.innerHTML=l.length?`<div class="warnbox" role="alert"><b>Atenção:</b> ${l.map(esc).join('<br>')}</div>`:''}
+function refreshTeam(i){
+  syncEd();const b=ed.blocos[i];
+  $('#team'+i).innerHTML=teamHTML(i);$('#cnt'+i).textContent=b.equipe.length;
+  const cl=$('#clr'+i);if(cl)cl.hidden=!b.equipe.length;
+  const pg=$('#pkg'+i);if(pg)pg.innerHTML=pkList(i,ed.q);
+  updConf();
+}
+function renderEd(first){
+  const it=ITEMS.find(x=>x.id===ed.id),modal=$('#modal'),top=modal.scrollTop;
+  const blocks=ed.blocos.map((b,i)=>`<div class="eb ed" data-b="${i}"><div class="ebh"><b>Bloco ${i+1}</b><span><button type="button" class="btn sm" data-bdup="${i}">Duplicar</button> <button type="button" class="btn sm" data-bdel="${i}" style="color:#ff8a98">Remover</button></span></div>
+    <div class="two"><div class="fld"><label for="bt${i}">Título</label><input id="bt${i}" data-bf="titulo" data-bi="${i}" value="${esc(b.titulo)}" placeholder="Ex.: Professores da manhã"></div><div class="fld"><label for="bl${i}">Local / sala</label><input id="bl${i}" data-bf="local" data-bi="${i}" value="${esc(b.local)}"></div></div>
+    <div class="two">${timeField('bh1_'+i,'Início',b._h1)}${timeField('bh2_'+i,'Fim',b._h2)}</div>
+    <div class="fld"><div class="lab">Equipe · <span id="cnt${i}">${b.equipe.length}</span><span class="tools"><button type="button" id="clr${i}" data-clearp="${i}" ${b.equipe.length?'':'hidden'}>Remover todos</button></span></div>
+      <div class="team" id="team${i}">${teamHTML(i)}</div>
+      <button type="button" class="btn sm" data-pickp="${i}" aria-expanded="${ed.pick===i}">${ed.pick===i?'▾ Fechar lista':'+ Adicionar pessoas'}</button>
+      ${ed.pick===i?`<div class="pick"><input class="pks" data-pks="${i}" placeholder="Buscar pessoa…" value="${esc(ed.q)}" autocomplete="off" aria-label="Buscar pessoa"><div class="pkg" id="pkg${i}">${pkList(i,ed.q)}</div></div>`:''}</div>
+    <div class="fld"><label for="bo${i}">Observações do bloco (opcional)</label><input id="bo${i}" data-bf="obs" data-bi="${i}" value="${esc(b.obs)}"></div></div>`).join('');
+  const copies=escItems().filter(x=>x.escala&&x.id!==ed.id);
+  modal.innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Escala · ${esc(it.title)}</h2><p class="note">${fmtL(it.start)}. As mudanças geram avisos para as pessoas incluídas, trocadas ou removidas.</p>
+  <div class="fld"><label for="eAtv">Atividade do dia</label><input id="eAtv" value="${esc(ed.atividade)}" placeholder="Deixe em branco se ainda não foi definida (aparece como “a definir”)"></div>
+  ${blocks||'<p class="empty">Nenhum bloco ainda. Adicione abaixo.</p>'}
+  <div class="fld"><div class="lab">Adicionar bloco</div><div class="seg">${['Professores da manhã','Professores da tarde','Coordenação','Tutoras, auxiliares e inspetoras','Em branco'].map(t=>`<button type="button" data-addb="${t}">+ ${t}</button>`).join('')}</div></div>
+  ${copies.length?`<div class="fld"><label for="eCopy">Copiar a escala de outro dia</label><select id="eCopy"><option value="">Escolher…</option>${copies.map(x=>`<option value="${x.id}">${fmt(x.start)} · ${esc(x.title)}</option>`).join('')}</select></div>`:''}
+  <div id="econf"></div>
+  <div class="foot"><button class="btn" data-close>Cancelar</button><button class="btn cta" id="escSave">Salvar escala</button></div>`;
+  updConf();
+  if(first)open(modal,'Editar escala');else modal.scrollTop=top;
+}
+const descPessoa=(e,pid)=>e?e.blocos.filter(b=>b.equipe.includes(pid)).map(b=>descB(b,pid)).join(' | '):'';
+function notifyEsc(it,old,novo){
+  const ids=new Set();[old,novo].forEach(e=>e&&e.blocos.forEach(b=>b.equipe.forEach(x=>ids.add(x))));
+  let n=0;const ev=`${it.title} (${fmt(it.start)})`;
+  ids.forEach(pid=>{const a=descPessoa(old,pid),b=descPessoa(novo,pid);let t=null;
+    if(!a&&b)t=`Você foi incluído(a) na escala de ${ev}: ${b}.`;
+    else if(a&&!b)t=`Você saiu da escala de ${ev}.`;
+    else if(a!==b)t=`Sua escala em ${ev} foi alterada: ${b}.`;
+    if(t){AVISOS.push({id:'a'+(++aseq),pid,texto:t,evid:it.id,quando:iso(new Date())});n++}});
+  return n;
+}
+function saveEsc(){
+  syncEd();let bad=null;
+  ed.blocos.forEach((b,i)=>{
+    const p1=parseTime(b._h1),p2=parseTime(b._h2);
+    [[b._h1,p1,'bh1_'+i],[b._h2,p2,'bh2_'+i]].forEach(([v,p,id])=>{const bd=!!v&&!p;const f=document.getElementById('f_'+id);if(f)f.classList.toggle('bad',bd);if(bd&&!bad)bad=id});
+    const bad2=p1&&p2&&p2<=p1,e2=document.getElementById('e_bh2_'+i),f2=document.getElementById('f_bh2_'+i);
+    if(e2)e2.textContent=bad2?'O fim deve ser depois do início.':'Use o formato 14:40.';
+    if(bad2){f2.classList.add('bad');if(!bad)bad='bh2_'+i}
+  });
+  if(bad){const el=document.getElementById(bad);if(el)el.focus();return}
+  const it=ITEMS.find(x=>x.id===ed.id);
+  const novo={atividade:ed.atividade.trim(),blocos:ed.blocos.filter(b=>b.titulo.trim()||b.equipe.length).map(b=>{const p1=parseTime(b._h1),p2=parseTime(b._h2),notas={};b.equipe.forEach(id=>{const t=(b.notas[id]||'').trim();if(t)notas[id]=t});return {id:b.id||('b'+(++bseq)),titulo:b.titulo.trim(),hora:p1?(p2?`${p1} – ${p2}`:p1):'',local:b.local.trim(),obs:b.obs.trim(),equipe:b.equipe.slice(),notas}})};
+  const n=notifyEsc(it,it.escala,novo);it.escala=novo;
+  closeAll();refresh();toast(n?`Escala salva · ${plural(n,'aviso criado','avisos criados')} 🔔`:'Escala salva ✔');
+}
+/* ---- cadastro de pessoas (só coordenação) ---- */
+let pf=null,pAdd=false;
+const pform=cur=>`<div class="eb ed"><div class="ebh"><b>${cur?'Editar '+esc(cur.nome):'Adicionar pessoa'}</b></div>
+   <div class="fld"><label for="pN">Nome completo</label><input id="pN" value="${esc(cur?cur.nome:'')}" autocomplete="off"></div>
+   <div class="two"><div class="fld"><label for="pG">Grupo</label><select id="pG">${GRUPOS.map(g=>`<option ${cur&&cur.grupo===g?'selected':''}>${g}</option>`).join('')}</select></div><div class="fld"><label for="pF">Função</label><input id="pF" value="${esc(cur?cur.funcao:'')}" placeholder="Ex.: Professor, Tutora, Inspetora"></div></div>
+   <div class="fld"><label for="pA">Área (professores)</label><select id="pA">${['','LGG','MAT','FTP','CNT','CHS'].map(a=>`<option value="${a}" ${cur&&cur.area===a?'selected':''}>${a||'—'}</option>`).join('')}</select></div>
+   <div class="foot" style="margin-top:0"><button type="button" class="btn" data-pcancel>Cancelar</button><button type="button" class="btn cta" id="pSave">${cur?'Salvar alterações':'Adicionar'}</button></div></div>`;
+function openPessoas(){if(!state.coord)return;pf=null;pAdd=false;renderPessoas(true)}
+function renderPessoas(first){
+  const modal=$('#modal'),top=modal.scrollTop;
+  const rows=GRUPOS.map(g=>{const ps=PESSOAS.filter(p=>p.grupo===g);return `<h3 class="wkh">${g} · ${ps.filter(p=>p.ativo).length} ativas</h3>`+ps.map(p=>`<div class="prow ${p.ativo?'':'off'}"><div><b>${esc(p.nome)}</b><small>${esc([p.funcao,p.area].filter(Boolean).join(' · '))}${p.ativo?'':' · inativa'}</small></div><span><button type="button" class="btn sm" data-pedit="${p.id}" aria-expanded="${pf===p.id}">${pf===p.id?'Fechar':'Editar'}</button> <button type="button" class="btn sm" data-ptoggle="${p.id}">${p.ativo?'Desativar':'Reativar'}</button></span></div>${pf===p.id?pform(p):''}`).join('')}).join('');
+  modal.innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Pessoas</h2><p class="note">Quem sai do Senac é <b>desativado(a)</b>: some das listas de escolha, mas continua nos registros antigos.</p>
+  <div class="drow" style="margin:0 0 8px"><button type="button" class="btn sm" data-padd>${pAdd?'Cancelar':'+ Adicionar pessoa'}</button></div>${pAdd?pform(null):''}${rows}`;
+  if(first)open(modal,'Pessoas');else modal.scrollTop=top;
+}
+function savePessoa(){
+  const nome=$('#pN').value.trim();if(!nome){$('#pN').focus();return toast('Digite o nome.')}
+  const d={nome,grupo:$('#pG').value,funcao:$('#pF').value.trim(),area:$('#pA').value};
+  if(pf){Object.assign(pessoa(pf),d);toast('Pessoa atualizada ✔')}else{PESSOAS.push(Object.assign({id:'p'+(++pseq),ativo:true},d));toast('Pessoa adicionada ✔')}
+  pf=null;pAdd=false;renderPessoas();
+}
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t.classList)return;
+  if(t.id==='eCopy'&&t.value&&ed){syncEd();const src=ITEMS.find(x=>x.id===t.value);ed.blocos=src.escala.blocos.map(b=>loadB(Object.assign({},b,{id:'b'+(++bseq),_h1:undefined,_h2:undefined})));ed.pick=null;renderEd()}
+});
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.id==='euq')renderEuList(t.value);
+  if(t.id==='egq')renderEgList(t.value);
+  if(t.classList&&t.classList.contains('pks')&&ed){ed.q=t.value;const pg=$('#pkg'+t.dataset.pks);if(pg)pg.innerHTML=pkList(+t.dataset.pks,ed.q)}
+});
+
+/* =========================== HORÁRIOS =========================== */
+state.hor={modo:'turma',turma:'t1',prof:null,dia:null,sim:null};
+const turmaH=id=>TURMAS_H.find(t=>t.id===id);
+const turnoDe=p=>p.grupo==='EMED Manhã'?'manha':p.grupo==='EMED Tarde'?'tarde':null;
+const aulaDe=(t,d,s)=>HOR.aulas[t+'|'+d+'|'+s];
+const areaCls=disc=>DISC[disc]?'ar-'+DISC[disc]:'';
+const curto=n=>{const a=n.split(' ');return a.length>1?a[0]+' '+a[a.length-1]:n};
+function planDe(pid,turno,d,s){
+  const p=pessoa(pid);
+  if((HOR.planInd[pid]||[]).some(x=>x.turno===turno&&x.dia===d&&x.slot===s))return 'ind';
+  if(p&&p.area&&turnoDe(p)===turno&&HOR.planArea.some(x=>x.area===p.area&&x.turno===turno&&x.dia===d&&x.slots.includes(s)))return 'area';
+  return null;
+}
+function profMap(pid){const m={};Object.entries(HOR.aulas).forEach(([k,a])=>{if(a.pid===pid){const [t,d,s]=k.split('|');m[`${turmaH(t).turno}|${d}|${s}`]={t,disc:a.disc}}});return m}
+function nowInfo(){
+  const sim=state.hor.sim,n=new Date();
+  const d=sim?sim.dia:(n.getDay()+6)%7,hm=sim?sim.hm:`${pad(n.getHours())}:${pad(n.getMinutes())}`;
+  return {d,hm,weekend:d>4};
+}
+function slotAt(turno,hm){
+  const S=SLOTS[turno];for(let i=0;i<S.length;i++)if(hm>=S[i][0]&&hm<S[i][1])return {s:i};
+  const iv=INTERVALO[turno];return hm>=iv[0]&&hm<iv[1]?{iv:true}:null;
+}
+function ttTable(turno,cellFn,dias){
+  const S=SLOTS[turno],nw=nowInfo(),ns=slotAt(turno,nw.hm);let rows='';
+  S.forEach((sl,s)=>{
+    if(s===3){const iv=INTERVALO[turno];rows+=`<tr class="iv"><th scope="row"><small>${iv[0]} – ${iv[1]}</small></th><td colspan="${dias.length}">Intervalo</td></tr>`}
+    rows+=`<tr><th scope="row"><b>${s+1}ª aula</b><small>${sl[0]} – ${sl[1]}</small></th>`+dias.map(d=>{const c=cellFn(d,s),now=!nw.weekend&&nw.d===d&&ns&&ns.s===s;return `<td class="${c.cls||''} ${now?'now':''}" ${c.attr||''}>${c.html}</td>`}).join('')+'</div>';
+  });
+  return `<div class="ttw"><table class="tt"><thead><tr><th></th>${dias.map(d=>`<th class="${!nw.weekend&&nw.d===d?'tod':''}">${isPhone()?DIAS[d]:DIAS[d]}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+const diasVis=()=>{if(!isPhone())return [0,1,2,3,4];if(state.hor.dia==null){const d=nowInfo().d;state.hor.dia=d>4?0:d}return [state.hor.dia]};
+const diaChips=()=>isPhone()?`<div class="seg dchips" role="group" aria-label="Dia da semana">${DIAS.map((d,i)=>`<button class="${state.hor.dia===i?'on':''}" data-hdia="${i}" aria-pressed="${state.hor.dia===i}">${d.slice(0,3)}</button>`).join('')}</div>`:'';
+function renderHor(){
+  const H=state.hor,modos=[['turma','Turmas'],['prof','Professores'],['agora','Agora'],['quadra','Ed. Física']];
+  let h=`<h2 class="sr-only">Horários</h2><div class="lbar"><div class="seg" role="group" aria-label="Tipo de horário">${modos.map(([k,l])=>`<button class="${H.modo===k?'on':''}" data-hmodo="${k}" aria-pressed="${H.modo===k}">${l}</button>`).join('')}</div>${state.coord?'<button class="btn sm" data-planarea>Planejamento por área</button>':''}</div>`;
+  h+=({turma:horTurma,prof:horProf,agora:horAgora,quadra:horQuadra})[H.modo]();
+  $('#v-hor').innerHTML=h;
+}
+function horTurma(){
+  const H=state.hor,t=turmaH(H.turma);
+  const chips=['manha','tarde'].map(tn=>`<div class="tchips"><span class="lbl">${tn==='manha'?'EMED Manhã':'EMED Tarde'}</span><div class="seg">${TURMAS_H.filter(x=>x.turno===tn).map(x=>`<button class="${x.id===t.id?'on':''}" data-hturma="${x.id}" aria-pressed="${x.id===t.id}" style="--c:var(--c-${tn})">${x.nome}</button>`).join('')}</div></div>`).join('');
+  const cell=(d,s)=>{
+    const a=aulaDe(t.id,d,s),ed=state.coord?`data-aedit="${t.id}|${d}|${s}" role="button" tabindex="0"`:'';
+    if(!a)return {html:'<span class="mut">—</span>',attr:ed};
+    const p=a.pid?pessoa(a.pid):null;
+    return {cls:areaCls(a.disc)+(a.pid?'':' proj'),attr:ed,html:`<b>${esc(a.disc)}</b>${p?(state.coord?`<span class="pr">${esc(curto(p.nome))}</span>`:`<span class="pr lk" role="button" tabindex="0" data-hprof="${p.id}">${esc(curto(p.nome))}</span>`):''}`};
+  };
+  return `${chips}<div class="thead"><h3>${esc(t.nome)}</h3>${state.coord?`<label class="sala">Sala <input data-sala="${t.id}" value="${esc(t.sala)}" aria-label="Sala da turma"></label>`:`<span class="sala">📍 ${esc(t.sala)}</span>`}</div>${diaChips()}${ttTable(t.turno,cell,diasVis())}${legend()}`;
+}
+const legend=()=>`<div class="leg">${Object.entries(AREAS).map(([k,v])=>`<span><i class="ar-${k}"></i>${v}</span>`).join('')}<span><i class="pl"></i>Planejamento</span></div>`;
+const hChips=(teachers,cur,q)=>['EMED Manhã','EMED Tarde'].map((g,gi)=>{const l=teachers.filter(x=>x.grupo===g&&x.nome.toLowerCase().includes(q));return l.length?`<div class="tchips"><span class="lbl">${g}</span><div class="seg">${l.map(x=>`<button class="${x.id===cur?'on':''}" data-hprof="${x.id}" aria-pressed="${x.id===cur}" style="--c:var(--c-${gi?'tarde':'manha'})">${esc(curto(x.nome))}</button>`).join('')}</div></div>`:''}).join('')||'<p class="rn">Ninguém encontrado.</p>';
+function horProf(){
+  const H=state.hor,teachers=PESSOAS.filter(p=>p.ativo&&turnoDe(p));
+  if(!H.prof||!pessoa(H.prof))H.prof=(state.eu&&pessoa(state.eu)&&turnoDe(pessoa(state.eu)))?state.eu:teachers[0].id;
+  const p=pessoa(H.prof),map=profMap(p.id),nw=nowInfo();
+  const sel=`<div class="fld" style="max-width:420px"><label for="hq">Buscar professor(a)</label><input id="hq" data-hq value="${esc(H.q||'')}" placeholder="Digite parte do nome" autocomplete="off"></div><div id="hchips">${hChips(teachers,p.id,(H.q||'').trim().toLowerCase())}</div>`;
+  let agora='Fora do horário de aula';
+  if(!nw.weekend)for(const tn of ['manha','tarde']){
+    const sl=slotAt(tn,nw.hm);if(!sl)continue;
+    if(sl.iv){agora='Intervalo';break}
+    const a=map[`${tn}|${nw.d}|${sl.s}`];
+    if(a){agora=`${sl.s+1}ª aula · ${turmaH(a.t).nome} (${a.disc}) · ${turmaH(a.t).sala}`;break}
+    const pl=planDe(p.id,tn,nw.d,sl.s);
+    agora=pl?`Planejamento ${pl==='area'?'da área':'individual'}`:'Sem aula neste horário';
+  }
+  const blocks=['manha','tarde'].map(tn=>{
+    const cell=(d,s)=>{
+      const a=map[`${tn}|${d}|${s}`],edit=state.coord;
+      if(a){const t=turmaH(a.t);return {cls:areaCls(a.disc),attr:edit?`data-aedit="${a.t}|${d}|${s}" role="button" tabindex="0"`:'',html:`<b>${esc(t.nome)}</b><span class="pr">${esc(a.disc)}</span>`}}
+      const pl=planDe(p.id,tn,d,s),k=`${p.id}|${tn}|${d}|${s}`;
+      if(pl)return {cls:'pl',attr:edit&&pl==='ind'?`data-plt="${k}" role="button" tabindex="0" title="Clique para remover"`:'',html:`<b>Planejamento</b><span class="pr">${pl==='area'?'da área':'individual'}</span>`};
+      return {html:'<span class="mut">—</span>',attr:edit?`data-plt="${k}" role="button" tabindex="0" title="Clique para marcar planejamento"`:''};
+    };
+    const n=Object.keys(map).filter(k=>k.startsWith(tn+'|')).length,pc=[0,1,2,3,4].reduce((c,d)=>c+[0,1,2,3,4,5].filter(s=>!map[`${tn}|${d}|${s}`]&&planDe(p.id,tn,d,s)).length,0);
+    const tt=tn==='manha'?'Período da manhã':'Período da tarde';
+    if(!n&&!pc&&!state.coord)return `<h3 class="wkh">${tt}</h3><p class="rn">Sem aulas nem planejamento neste período.</p>`;
+    return `<h3 class="wkh">${tt} · ${plural(n,'aula','aulas')} · ${plural(pc,'planejamento','planejamentos')}</h3>${ttTable(tn,cell,diasVis())}`;
+  }).join('');
+  return `${sel}<div class="agora-box"><span>Agora</span><b>${esc(agora)}</b></div>${diaChips()}${blocks}${legend()}${state.coord?'<p class="rn" style="margin-top:8px">Coordenação: clique numa célula vazia para marcar planejamento individual, ou numa aula para editá-la.</p>':''}`;
+}
+function horAgora(){
+  const H=state.hor,nw=nowInfo(),sim=H.sim;
+  const ctl=`<div class="lbar"><div class="fld sm"><label for="asimd">Dia</label><select id="asimd" data-asimd>${DIAS.map((d,i)=>`<option value="${i}" ${nw.d===i?'selected':''}>${d}</option>`).join('')}<option value="5" ${nw.d===5?'selected':''}>Sábado</option><option value="6" ${nw.d===6?'selected':''}>Domingo</option></select></div><div class="fld sm"><label for="asimh">Hora</label><input type="time" id="asimh" data-asimh value="${nw.hm}"></div>${sim?'<button class="btn sm" data-asimreset>Voltar para agora</button>':'<span class="rn">Usando o relógio do aparelho. Mude o dia ou a hora para consultar outro momento.</span>'}</div>`;
+  if(nw.weekend)return ctl+'<p class="empty" style="text-align:center;margin-top:24px">Fim de semana: sem aulas regulares.</p>';
+  const cards=['manha','tarde'].map(tn=>{
+    const sl=slotAt(tn,nw.hm),title=tn==='manha'?'EMED Manhã':'EMED Tarde';
+    if(!sl)return `<h3 class="wkh">${title}</h3><p class="rn">Fora do horário de aula deste período.</p>`;
+    if(sl.iv)return `<h3 class="wkh">${title}</h3><p class="rn">Intervalo (${INTERVALO[tn][0]} – ${INTERVALO[tn][1]}).</p>`;
+    const body=TURMAS_H.filter(t=>t.turno===tn).map(t=>{const a=aulaDe(t.id,nw.d,sl.s),p=a&&a.pid?pessoa(a.pid):null;
+      return `<div class="ag ${a?areaCls(a.disc):''}"><div class="agh"><b>${esc(t.nome)}</b><span>📍 ${esc(t.sala)}</span></div><div>${a?esc(a.disc):'—'}${p?` · <span class="lk" role="button" tabindex="0" data-hprof="${p.id}">${esc(p.nome)}</span>`:''}</div></div>`}).join('');
+    const emPlan=PESSOAS.filter(p=>p.ativo&&turnoDe(p)===tn&&!profMapCache(p.id)[`${tn}|${nw.d}|${sl.s}`]&&planDe(p.id,tn,nw.d,sl.s));
+    return `<h3 class="wkh">${title} · ${sl.s+1}ª aula (${SLOTS[tn][sl.s][0]} – ${SLOTS[tn][sl.s][1]})</h3><div class="agg">${body}</div>${emPlan.length?`<p class="rn" style="margin-top:10px"><b>Em planejamento agora:</b> ${emPlan.map(p=>`<span class="lk" role="button" tabindex="0" data-hprof="${p.id}">${esc(p.nome)}</span>`).join(', ')}</p>`:''}`;
+  }).join('');
+  return ctl+cards;
+}
+const _pm={};const profMapCache=pid=>_pm[pid]||(_pm[pid]=profMap(pid));
+function horQuadra(){
+  const T=state.today;
+  const rows=QUADRA.map(q=>{
+    const t=turmaH(q.turma),ds=q.datas.slice().sort(),prox=ds.find(d=>d>=T);
+    return `<article class="escard qcard ${t.turno}"><div class="escd ${t.turno}" style="cursor:default"><div class="ib"><div class="it" style="font-size:16px">${esc(t.nome)}</div><small>${DIAS[q.dia]} · ${q.hora} · Quadra${prox?` · próxima: <b style="color:#fff;font-weight:500">${fmt(prox)}</b>`:''}</small></div>${state.coord?`<button class="btn sm" data-qedit="${q.turma}">Editar datas</button>`:''}</div>
+    <div class="qds">${ds.map(d=>{const dd=dt(d);return `<span class="qd ${d===prox?'next':''} ${d<T?'past':''}" tabindex="0" title="${fmtL(d)}"><b>${dd.getDate()}</b><small>${MESES[dd.getMonth()].slice(0,3).toUpperCase()}</small></span>`}).join('')||'<span class="rn">Nenhuma data</span>'}</div></article>`}).join('');
+  return `<p class="rn" style="margin:12px 0">Datas da Ed. Física na quadra de cada turma.</p>${rows}`;
+}
+
+/* ---- coordenação: editar uma aula ---- */
+let ae=null;
+function openAula(key){
+  if(!state.coord)return;
+  const [t,d,s]=key.split('|'),a=aulaDe(t,+d,+s)||{disc:'',pid:'',ftp:false};
+  ae={t,d:+d,s:+s,disc:a.disc,pid:a.pid||'',ftp:!!a.ftp};renderAula(true);
+}
+function aulaConf(){
+  const tn=turmaH(ae.t).turno,out=[];
+  if(!ae.pid)return out;
+  Object.entries(HOR.aulas).forEach(([k,a])=>{const [t,d,s]=k.split('|');if(a.pid===ae.pid&&+d===ae.d&&+s===ae.s&&t!==ae.t&&turmaH(t).turno===tn)out.push(`${pnome(ae.pid)} já está com ${turmaH(t).nome} neste horário.`)});
+  const pl=planDe(ae.pid,tn,ae.d,ae.s);if(pl)out.push(`${pnome(ae.pid)} tem planejamento ${pl==='area'?'da área':'individual'} neste horário.`);
+  return out;
+}
+function renderAula(first){
+  const t=turmaH(ae.t),sl=SLOTS[t.turno][ae.s],modal=$('#modal');
+  const discs=Object.keys(DISC),isProj=!DISC[ae.disc]&&ae.disc!=='';
+  const profs=PESSOAS.filter(p=>p.ativo&&p.grupo!=='Coordenação'||p.id===ae.pid);
+  modal.innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>${esc(t.nome)}</h2><p class="note">${DIAS[ae.d]} · ${ae.s+1}ª aula (${sl[0]} – ${sl[1]})</p>
+  <div class="fld"><label for="aDisc">Disciplina</label><select id="aDisc" data-ae="disc"><option value="">— (sem aula)</option>${discs.map(x=>`<option ${x===ae.disc?'selected':''}>${x}</option>`).join('')}</select></div>
+  <div class="fld"><label for="aProf">Professor(a)</label><select id="aProf" data-ae="pid"><option value="">Ninguém (projeto / sem professor)</option>${GRUPOS.slice(1).map(g=>`<optgroup label="${g}">${profs.filter(p=>p.grupo===g).map(p=>`<option value="${p.id}" ${p.id===ae.pid?'selected':''}>${esc(p.nome)}${p.area?' · '+p.area:''}</option>`).join('')}</optgroup>`).join('')}</select></div>
+  <div id="aConf">${aulaConf().map(c=>`<div class="warnbox" role="alert">${esc(c)}</div>`).join('')}</div>
+  <div class="foot"><button class="btn" data-aclear style="color:#ff8a98;margin-right:auto">Limpar</button><button class="btn" data-close>Cancelar</button><button class="btn cta" id="aSave">Salvar</button></div>`;
+  if(first)open(modal,'Editar aula');
+}
+function saveAula(){
+  const k=`${ae.t}|${ae.d}|${ae.s}`;
+  if(ae.disc)HOR.aulas[k]={disc:ae.disc,pid:ae.pid,ftp:ae.ftp};else delete HOR.aulas[k];
+  Object.keys(_pm).forEach(x=>delete _pm[x]);closeAll();refresh();toast('Aula salva ✔');
+}
+/* ---- coordenação: planejamento por área ---- */
+function openPlanArea(){
+  if(!state.coord)return;
+  const modal=$('#modal'),top=modal.scrollTop;
+  const row=(x,i)=>`<div class="eb ed"><div class="two"><div class="fld"><label for="pa${i}a">Área</label><select id="pa${i}a" data-pa="${i}:area">${Object.entries(AREAS).map(([k,v])=>`<option value="${k}" ${x.area===k?'selected':''}>${v}</option>`).join('')}</select></div><div class="fld"><label for="pa${i}t">Período</label><select id="pa${i}t" data-pa="${i}:turno"><option value="manha" ${x.turno==='manha'?'selected':''}>EMED Manhã</option><option value="tarde" ${x.turno==='tarde'?'selected':''}>EMED Tarde</option></select></div></div>
+   <div class="fld"><label for="pa${i}d">Dia</label><select id="pa${i}d" data-pa="${i}:dia">${DIAS.map((d,j)=>`<option value="${j}" ${x.dia===j?'selected':''}>${d}</option>`).join('')}</select></div>
+   <div class="fld"><div class="lab">Aulas de planejamento</div><div class="seg">${[0,1,2,3,4,5].map(s=>`<button type="button" class="${x.slots.includes(s)?'on':''}" data-pas="${i}:${s}" aria-pressed="${x.slots.includes(s)}">${s+1}ª</button>`).join('')}</div></div>
+   <div class="foot" style="margin-top:0"><button type="button" class="btn sm" data-padel="${i}" style="color:#ff8a98">Remover</button></div></div>`;
+  modal.innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Planejamento por área</h2><p class="note">Vale para todos os professores da área naquele período. O planejamento individual (inclusive no contraturno) é marcado na grade do professor.</p>${HOR.planArea.map(row).join('')||'<p class="empty">Nenhum planejamento de área.</p>'}<div class="foot"><button type="button" class="btn" data-padd2>+ Adicionar</button><button type="button" class="btn cta" data-close>Concluir</button></div>`;
+  if(!$('#modal').classList.contains('on'))open(modal,'Planejamento por área');else modal.scrollTop=top;
+}
+/* ---- coordenação: datas da Ed. Física ---- */
+let qe=null;
+function openQuadra(tid){
+  if(!state.coord)return;qe=tid;const q=QUADRA.find(x=>x.turma===tid),t=turmaH(tid),modal=$('#modal'),top=modal.scrollTop;
+  modal.innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Ed. Física · ${esc(t.nome)}</h2><p class="note">${DIAS[q.dia]} · ${q.hora} · Quadra. As datas aparecem no calendário.</p>
+  <div class="fld"><div class="lab">Datas</div><div class="pcs">${q.datas.slice().sort().map(d=>`<span class="pc">${fmt(d)} <button type="button" data-qdel="${d}" aria-label="Remover ${fmt(d)}">✕</button></span>`).join('')||'<span class="rn">Nenhuma</span>'}</div></div>
+  <div class="two"><div class="fld"><label for="qNew">Adicionar data</label><input type="date" id="qNew" min="2027-01-01" max="2027-12-31"></div><div class="fld"><label>&nbsp;</label><button type="button" class="btn" data-qadd>+ Adicionar</button></div></div>
+  <div class="foot"><button type="button" class="btn cta" data-close>Concluir</button></div>`;
+  if(!$('#modal').classList.contains('on'))open(modal,'Datas da Ed. Física');else modal.scrollTop=top;
+}
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t.dataset)return;
+  if(t.dataset.hprofsel!==undefined){state.hor.prof=t.value;return refresh()}
+  if(t.dataset.asimd!==undefined||t.dataset.asimh!==undefined){const d=+$('#asimd').value,hm=$('#asimh').value||'08:00';state.hor.sim={dia:d,hm};return refresh()}
+  if(t.dataset.sala){turmaH(t.dataset.sala).sala=t.value.trim();return}
+  if(t.dataset.ae&&ae){ae[t.dataset.ae]=t.value;const c=$('#aConf');if(c)c.innerHTML=aulaConf().map(x=>`<div class="warnbox" role="alert">${esc(x)}</div>`).join('')}
+  if(t.dataset.pa){const [i,f]=t.dataset.pa.split(':');HOR.planArea[+i][f]=(f==='dia')?+t.value:t.value}
+});
+
+/* =========================== RESERVAS · LABORATÓRIO 124 =========================== */
+state.res={sem:null,dia:null};
+const addDays=(s,n)=>{const d=dt(s);d.setDate(d.getDate()+n);return iso(d)};
+const semanaTxt=(a,b)=>a.getMonth()===b.getMonth()?`${a.getDate()} a ${b.getDate()} de ${MESES[b.getMonth()].toLowerCase()}`:`${a.getDate()} de ${MESES[a.getMonth()].toLowerCase()} a ${b.getDate()} de ${MESES[b.getMonth()].toLowerCase()}`;
+const BLK={};
+function rebuildBlk(){
+  Object.keys(BLK).forEach(k=>delete BLK[k]);
+  LAB.bloqueios.forEach(b=>{
+    const len=b.fim&&b.fim>b.ini?diff(b.ini,b.fim):0,starts=[],ate=b.ate||Y1;
+    if(!b.rep||b.rep==='nao')starts.push(b.ini);
+    else if(b.rep==='mes'){for(const d=dt(b.ini);iso(d)<=ate;d.setMonth(d.getMonth()+1))starts.push(iso(d))}
+    else for(let s=b.ini;s<=ate;s=addDays(s,b.rep==='sem'?7:14))starts.push(s);
+    starts.forEach(s=>{for(let i=0;i<=len;i++){const k=addDays(s,i);b.turnos.forEach(t=>{BLK[k+'|'+t]=b.motivo||'Indisponível'})}});
+  });
+}
+rebuildBlk();
+function labStatus(k,turno){
+  const dow=(dt(k).getDay()+6)%7;
+  if(!LAB.dias[turno].includes(dow))return {st:'off'};
+  const f=ITEMS.find(i=>i.kind==='fer'&&i.start<=k&&i.end>=k);if(f)return {st:'fer',msg:f.title};
+  if(BLK[k+'|'+turno])return {st:'bloq',msg:BLK[k+'|'+turno]};
+  return {st:'ok'};
+}
+const rvOf=(k,turno,s)=>LAB.reservas.filter(r=>r.data===k&&r.turno===turno&&r.slot===s);
+const nomesRv=r=>r.pids.map(id=>curto(pnome(id))).join(' + ');
+const labDias=()=>[0,1,2,3,4].filter(d=>LAB.dias.manha.includes(d)||LAB.dias.tarde.includes(d));
+const labResumo=()=>['manha','tarde'].map(t=>`${t==='manha'?'Manhã':'Tarde'}: ${LAB.dias[t].map(d=>DIAS[d].slice(0,3)).join(', ')||'—'}`).join(' · ');
+function proxDispon(){
+  for(let i=0;i<120;i++){const k=addDays(ref(),i);for(const turno of ['manha','tarde'])if(labStatus(k,turno).st==='ok')return {k,turno}}
+  return {k:ref(),turno:'manha'};
+}
+function renderRes(){
+  if(!state.res.sem)state.res.sem=iso(monday(state.today<Y0?'2027-01-26':ref()));
+  const sem=state.res.sem,ativos=labDias(),ph=isPhone();
+  if(ph&&(state.res.dia==null||!ativos.includes(state.res.dia))){const d=nowInfo().d;state.res.dia=ativos.includes(d)?d:ativos[0]}
+  const ms=dt(sem),me=dt(addDays(sem,4)),dias=ph?[state.res.dia]:ativos;
+  let h=`<h2 class="sr-only">Reservas do Laboratório 124</h2><div class="mhead" style="margin-top:14px"><button class="circ" data-rsem="-1" aria-label="Semana anterior">‹</button><h2 style="font-size:22px;min-width:0">Semana de ${semanaTxt(ms,me)}</h2><button class="circ" data-rsem="1" aria-label="Próxima semana">›</button><button class="btn" data-rsem="0">Esta semana</button><span style="margin-left:auto;display:flex;gap:8px"><button class="btn cta sm" data-radd="new">+ Reservar</button>${state.coord?'<button class="btn sm" data-labcfg>Configurar</button>':''}</span></div>
+   <p class="rn" style="margin:0 0 8px">Laboratório 124 · ${labResumo()}. Várias pessoas podem reservar a mesma aula.</p>`;
+  if(ph)h+=`<div class="seg dchips" role="group" aria-label="Dia">${ativos.map(d=>`<button class="${state.res.dia===d?'on':''}" data-rdia="${d}" aria-pressed="${state.res.dia===d}">${DIAS[d].slice(0,3)}</button>`).join('')}</div>`;
+  if(state.eu){
+    const mine=LAB.reservas.filter(r=>r.pids.includes(state.eu)&&r.data>=ref()),grp={};
+    mine.forEach(r=>{const g=r.data+'|'+r.turno;(grp[g]=grp[g]||[]).push(r.slot+1)});
+    const l=Object.keys(grp).sort().slice(0,6);
+    if(l.length)h+=`<div class="agora-box"><span>Suas reservas</span><b style="font-size:14px;font-weight:400">${l.map(g=>{const [k,t]=g.split('|');return `${DIAS[(dt(k).getDay()+6)%7].slice(0,3)} ${fmt(k)} (${t==='manha'?'manhã':'tarde'}): ${grp[g].sort().map(n=>n+'ª').join(', ')}`}).join(' · ')}</b></div>`;
+  }
+  h+=['manha','tarde'].map(turno=>{
+    const ds=dias.filter(d=>LAB.dias[turno].includes(d)),nome=turno==='manha'?'Período da manhã':'Período da tarde';
+    if(!ds.length)return `<h3 class="wkh">${nome}</h3><p class="rn">Sem reservas neste dia neste período.</p>`;
+    const head=ds.map(d=>{const k=addDays(sem,d),st=labStatus(k,turno);return `<div class="rgh ${st.st!=='ok'?'blk':''} ${k===state.today?'tod':''}"><b>${DIAS[d]}</b><small>${fmt(k)}</small>${st.st==='ok'?`<button class="btn sm rvall" data-radd="${k}|${turno}|all">Reservar o período</button>`:`<span class="bm">${esc(st.msg||'Indisponível')}</span>`}</div>`}).join('');
+    let rows='';
+    SLOTS[turno].forEach((sl,s)=>{
+      if(s===3)rows+=`<div class="rgr iv"><div class="rgl"><small>${INTERVALO[turno][0]} – ${INTERVALO[turno][1]}</small></div><div class="rgi">Intervalo</div></div>`;
+      rows+=`<div class="rgr"><div class="rgl"><b>${s+1}ª aula</b><small>${sl[0]} – ${sl[1]}</small></div>`+ds.map(d=>{
+        const k=addDays(sem,d),st=labStatus(k,turno);
+        if(st.st!=='ok')return '<div class="rcell off"></div>';
+        return `<div class="rcell">${rvOf(k,turno,s).map(r=>`<button class="rv ${r.pids.includes(state.eu)?'me':''}" data-rv="${r.id}">${esc(nomesRv(r))}${r.turma?` <em>· ${esc(r.turma)}</em>`:''}</button>`).join('')}<button class="rvadd" data-radd="${k}|${turno}|${s}" aria-label="Reservar a ${s+1}ª aula, ${fmtL(k)}">+</button></div>`;
+      }).join('')+'</div>';
+    });
+    return `<h3 class="wkh">${nome}</h3><div class="ttw"><div class="rg" style="--n:${ds.length}"><div class="rgr rgh0"><div class="rgl"></div>${head}</div>${rows}</div></div>`;
+  }).join('');
+  $('#v-res').innerHTML=h;
+}
+/* ---- reservar ---- */
+let rf=null;
+function openReserva(spec){
+  let k,turno,slots=[];
+  if(spec==='new'){const p=proxDispon();k=p.k;turno=p.turno}
+  else{const [kk,tt,ss]=spec.split('|');k=kk;turno=tt;slots=ss==='all'?[0,1,2,3,4,5]:[+ss]}
+  rf={k,turno,slots,pids:state.eu?[state.eu]:[],q:''};
+  renderReserva(true);
+}
+function renderReserva(first){
+  const modal=$('#modal');
+  modal.innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Reservar o laboratório 124</h2><p class="note">Várias pessoas podem reservar a mesma aula. Quem reservou pode cancelar a qualquer momento.</p>
+  <div class="two"><div class="fld" id="fRk"><label for="rK">Data</label><input type="date" id="rK" value="${rf.k}" min="2027-01-01" max="2027-12-31" aria-describedby="eRk"><div class="err" id="eRk" role="alert"></div></div>
+   <div class="fld" role="group" aria-labelledby="lbRt"><div class="lab" id="lbRt">Período</div><div class="seg" id="rT">${[['manha','Manhã'],['tarde','Tarde']].map(([k,l])=>`<button type="button" data-rt="${k}" class="${rf.turno===k?'on':''}" aria-pressed="${rf.turno===k}" style="--c:var(--c-${k})">${l}</button>`).join('')}</div></div></div>
+  <p class="rn" id="rStat" style="margin:-4px 0 10px"></p>
+  <div class="fld" id="fRs" role="group" aria-labelledby="lbRs"><div class="lab" id="lbRs">Aulas <span class="tools"><button type="button" data-rall>Período todo</button><button type="button" data-rnone>Limpar</button></span></div><div class="seg" id="rS"></div><div class="err" id="eRs" role="alert">Escolha pelo menos uma aula.</div></div>
+  <div class="fld" id="fRp"><div class="lab">Quem reserva</div><div class="pcs" id="rP"></div><input id="rQ" class="pks" style="margin-top:8px" placeholder="Buscar pessoa para adicionar…" autocomplete="off" aria-label="Buscar pessoa"><div class="pkc" id="rRes" style="margin-top:6px"></div><div class="err" id="eRp" role="alert">Escolha quem reserva.</div></div>
+  <div class="two"><div class="fld"><label for="rTurma">Turma (opcional)</label><input id="rTurma" list="dlTurmas" autocomplete="off"><datalist id="dlTurmas">${TURMAS_H.map(t=>`<option value="${esc(t.nome)}">`).join('')}</datalist></div><div class="fld"><label for="rObs">Observação (opcional)</label><input id="rObs"></div></div>
+  <div class="foot"><button class="btn" data-close>Cancelar</button><button class="btn cta" id="rSave">Reservar</button></div>`;
+  if(first)open(modal,'Reservar o laboratório');
+  updR();
+}
+function updR(){
+  const st=labStatus(rf.k,rf.turno),dow=DIAS[(dt(rf.k).getDay()+6)%7];
+  $('#rStat').textContent=st.st==='ok'?`${dow} · disponível`:st.st==='off'?`${dow}: sem reservas neste período (funcionamento: ${labResumo()})`:`${dow}: indisponível — ${st.msg}`;
+  $('#rStat').style.color=st.st==='ok'?'':'var(--c-prof)';
+  $('#rS').innerHTML=SLOTS[rf.turno].map((sl,s)=>`<button type="button" data-rs="${s}" class="${rf.slots.includes(s)?'on':''}" aria-pressed="${rf.slots.includes(s)}" style="--c:var(--c-${rf.turno})">${s+1}ª<small style="display:block;font-size:11px;font-weight:400">${sl[0]}</small></button>`).join('');
+  $$('#rT button').forEach(b=>{const on=b.dataset.rt===rf.turno;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
+  $('#rP').innerHTML=rf.pids.map(id=>`<span class="pc">${esc(pnome(id))} <button type="button" data-rpr="${id}" aria-label="Remover ${esc(pnome(id))}">✕</button></span>`).join('')||'<span class="rn">Ninguém ainda</span>';
+  const q=rf.q.trim().toLowerCase();
+  $('#rRes').innerHTML=q?(PESSOAS.filter(p=>p.ativo&&!rf.pids.includes(p.id)&&p.nome.toLowerCase().includes(q)).slice(0,8).map(p=>`<button type="button" class="pk" data-rpp="${p.id}">+ ${esc(p.nome)}</button>`).join('')||'<span class="rn">Ninguém encontrado</span>'):'';
+}
+function saveReserva(){
+  const turma=$('#rTurma').value.trim(),obs=$('#rObs').value.trim(),st=labStatus(rf.k,rf.turno);let first=null;
+  const fl=(sel,c,f)=>{const el=$(sel);el.classList.toggle('bad',!!c);if(c&&!first)first=f};
+  $('#eRk').textContent=!rf.k?'Escolha a data.':st.st==='off'?'Neste dia da semana o laboratório não recebe reservas neste período.':`Indisponível: ${st.msg||''}`;
+  fl('#fRk',!rf.k||st.st!=='ok','#rK');fl('#fRs',!rf.slots.length,'#rS button');fl('#fRp',!rf.pids.length,'#rQ');
+  if(first){const el=$(first);el&&el.focus();return}
+  const grp=rf.slots.length>1?'g'+(++rseq):'';
+  rf.slots.slice().sort().forEach(s=>LAB.reservas.push({id:'r'+(++rseq),data:rf.k,turno:rf.turno,slot:s,pids:rf.pids.slice(),turma,obs,grp}));
+  state.res.sem=iso(monday(rf.k));closeAll();refresh();
+  toast(rf.slots.length>1?`Reservado: ${rf.slots.length} aulas ✔`:'Reservado ✔');
+}
+function openRv(id){
+  const r=LAB.reservas.find(x=>x.id===id);if(!r)return;
+  const same=r.grp?LAB.reservas.filter(x=>x.grp===r.grp).length:1,sl=SLOTS[r.turno][r.slot];
+  $('#modal').innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Reserva do laboratório</h2><p class="note">${fmtL(r.data)} · ${r.turno==='manha'?'manhã':'tarde'} · ${r.slot+1}ª aula (${sl[0]} – ${sl[1]})</p>
+  <dl class="kv"><dt>Quem</dt><dd>${r.pids.map(id=>esc(pnome(id))).join(', ')}</dd>${r.turma?`<dt>Turma</dt><dd>${esc(r.turma)}</dd>`:''}${r.obs?`<dt>Observação</dt><dd>${esc(r.obs)}</dd>`:''}</dl>
+  <div class="foot" style="flex-wrap:wrap"><button class="btn" data-close>Fechar</button><button class="btn" data-rcancel="${r.id}" style="color:#ff8a98">Cancelar esta aula</button>${same>1?`<button class="btn" data-rcancelgrp="${r.grp}" style="color:#ff8a98">Cancelar o período todo (${same} aulas)</button>`:''}</div>`;
+  open($('#modal'),'Reserva do laboratório');
+}
+/* ---- coordenação: dias de funcionamento e bloqueios ---- */
+function openLabCfg(){
+  if(!state.coord)return;
+  const modal=$('#modal'),top=modal.scrollTop,fd=s=>fmt(s),rep={nao:'',sem:' · toda semana',quinz:' · a cada 15 dias',mes:' · todo mês'};
+  modal.innerHTML=`<button class="x" data-close aria-label="Fechar">✕</button><h2>Laboratório 124 · configuração</h2><p class="note">A coordenação define em que dias e períodos o laboratório recebe reservas e quais datas ficam indisponíveis.</p>
+  ${['manha','tarde'].map(t=>`<div class="fld" role="group" aria-labelledby="ld${t}"><div class="lab" id="ld${t}">Dias com reserva · ${t==='manha'?'manhã':'tarde'}</div><div class="seg">${DIAS.map((d,i)=>`<button type="button" data-ldia="${t}:${i}" class="${LAB.dias[t].includes(i)?'on':''}" aria-pressed="${LAB.dias[t].includes(i)}" style="--c:var(--c-${t})">${d.slice(0,3)}</button>`).join('')}</div></div>`).join('')}
+  <h3 class="wkh">Datas indisponíveis</h3>
+  ${LAB.bloqueios.map(b=>`<div class="prow"><div><b>${esc(b.motivo||'Indisponível')}</b><small>${fd(b.ini)}${b.fim&&b.fim>b.ini?' a '+fd(b.fim):''} · ${b.turnos.length>1?'manhã e tarde':b.turnos[0]==='manha'?'manhã':'tarde'}${rep[b.rep||'nao']}${b.rep&&b.rep!=='nao'&&b.ate?' até '+fd(b.ate):''}</small></div><button type="button" class="btn sm" data-lbdel="${b.id}" style="color:#ff8a98">Remover</button></div>`).join('')||'<p class="empty">Nenhuma data indisponível.</p>'}
+  <div class="eb ed"><div class="ebh"><b>Adicionar indisponibilidade</b></div>
+   <div class="two"><div class="fld"><label for="lbIni">Data (ou início)</label><input type="date" id="lbIni" min="2027-01-01" max="2027-12-31"></div><div class="fld"><label for="lbFim">Até (opcional)</label><input type="date" id="lbFim" min="2027-01-01" max="2027-12-31"></div></div>
+   <div class="two"><div class="fld"><label for="lbTurno">Período</label><select id="lbTurno"><option value="ambos">Manhã e tarde</option><option value="manha">Só manhã</option><option value="tarde">Só tarde</option></select></div><div class="fld"><label for="lbMotivo">Motivo</label><input id="lbMotivo" placeholder="Ex.: Manutenção, prova, evento"></div></div>
+   <div class="two"><div class="fld"><label for="lbRep">Repetir</label><select id="lbRep"><option value="nao">Não repete</option><option value="sem">Toda semana</option><option value="quinz">A cada 15 dias</option><option value="mes">Todo mês</option></select></div><div class="fld"><label for="lbAte">Repetir até</label><input type="date" id="lbAte" min="2027-01-01" max="2027-12-31"></div></div>
+   <div class="foot" style="margin-top:0"><button type="button" class="btn cta" data-lbadd>Adicionar</button></div></div>
+  <div class="foot"><button type="button" class="btn" data-close>Concluir</button></div>`;
+  if(!$('#modal').classList.contains('on'))open(modal,'Configuração do laboratório');else modal.scrollTop=top;
+}
+function addBloqueio(){
+  const ini=$('#lbIni').value;if(!ini){$('#lbIni').focus();return toast('Escolha a data.')}
+  const t=$('#lbTurno').value,rep=$('#lbRep').value;
+  LAB.bloqueios.push({id:'b'+(++rseq),ini,fim:$('#lbFim').value,turnos:t==='ambos'?['manha','tarde']:[t],motivo:$('#lbMotivo').value.trim(),rep,ate:$('#lbAte').value});
+  rebuildBlk();openLabCfg();refresh();toast('Indisponibilidade adicionada ✔');
+}
+document.addEventListener('input',e=>{if(e.target.id==='rQ'&&rf){rf.q=e.target.value;updR()}});
+document.addEventListener('input',e=>{if(e.target.dataset&&e.target.dataset.hq!==undefined){state.hor.q=e.target.value;const T=PESSOAS.filter(p=>p.ativo&&turnoDe(p));document.getElementById('hchips').innerHTML=hChips(T,state.hor.prof,e.target.value.trim().toLowerCase())}});
+document.addEventListener('change',e=>{if(e.target.id==='rK'&&rf){rf.k=e.target.value;updR()}});
+
 /* ---- início ---- */
-const hp=location.hash.slice(1).split('&'); let wantForm=null;
-hp.slice(1).forEach(p=>{const [k,v]=p.split('=');if(k==='q')state.q=decodeURIComponent(v||'').toLowerCase();if(k==='form')wantForm=v;if(k==='hoje'&&/^\d{4}-\d{2}-\d{2}$/.test(v||'')){state.today=v;state.sim=true}});
+const hp=location.hash.slice(1).split('&'); let wantForm=null,wantEsc=null,wantPes=false;
+hp.slice(1).forEach(p=>{const [k,v]=p.split('=');if(k==='q')state.q=decodeURIComponent(v||'').toLowerCase();if(k==='form')wantForm=v;if(k==='eu'&&pessoa(v))state.eu=v;if(k==='coord'&&v==='1')state.coord=true;if(k==='escedit')wantEsc=v;if(k==='pessoas')wantPes=true;if(k==='hoje'&&/^\d{4}-\d{2}-\d{2}$/.test(v||'')){state.today=v;state.sim=true}});
 state.cur={y:2027,m:dt(ref()).getMonth()};
 renderDemoBar();refresh();
-if(['mes','agenda','ano'].includes(hp[0]))go(hp[0]);
+if(['mes','agenda','ano','esc','hor','res'].includes(hp[0]))go(hp[0]);
+{const a=hp.find(p=>p.startsWith('radd='));if(a)openReserva(a.slice(5).replace(/_/g,'|'));if(hp.includes('labcfg=1'))openLabCfg();const w=hp.find(p=>p.startsWith('rsem='));if(w){state.res.sem=w.slice(5);refresh()}}
+{const h=hp.find(p=>p.startsWith('hm='));if(h){state.hor.modo=h.slice(3);if(hp.includes('hp=1'))state.hor.prof='p6';refresh()}}
+{const h=hp.find(p=>p.startsWith('ht='));if(h){state.hor.turma=h.slice(3);refresh()}}
+if(state.coord){$('#coordTag').hidden=false;$('#pessoasBtn').hidden=false;$('#coordBtn').textContent='🔓 Sair da área da coordenação'}
+if(wantEsc){const it=ITEMS.find(i=>i.start===wantEsc&&isEsc(i));if(it)openEscEditor(it.id)}
+if(wantPes)openPessoas();
+{const a=hp.find(p=>p.startsWith('aedit='));if(a)openAula(a.slice(6).replace(/_/g,'|'));const b=hp.find(p=>p.startsWith('planarea='));if(b)openPlanArea();const c=hp.find(p=>p.startsWith('quadra='));if(c)openQuadra(c.slice(7))}
 if(hp[0]==='new')openForm(state.today);
 if(wantForm){openForm(state.today);if(['manha','tarde','ambos'].includes(wantForm)){form.turno=wantForm;form.tl=turmaPool().slice(0,2);$$('#sgTurno button').forEach(b=>b.classList.toggle('on',b.dataset.k===wantForm));syncForm()}}
 {const c=hp.find(p=>p.startsWith('clock='));if(c&&$('#iH1')){$('#iH1').value=decodeURIComponent(c.slice(6))||'08:00';openClock('iH1')}}
+{const t=hp.find(p=>p.startsWith('tip='));if(t){const b=document.querySelector(`.md[data-daybtn="${t.slice(4)}"]`);if(b)showTip(b)}}
 if(matchMedia('(display-mode: standalone)').matches||navigator.standalone)$('#installBtn').hidden=true;
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
