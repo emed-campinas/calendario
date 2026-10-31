@@ -9,7 +9,7 @@ const TURMAS={manha:['1A INF','1B IAR','2A INF','2B IAR','3A INF','3B IAR'],
               tarde:['1A ADM','1B ADM','2A MKT','2B MKT','3A MKT','3B MKT']};
 const BIM=[{n:1,s:'2027-01-26',e:'2027-04-16'},{n:2,s:'2027-04-19',e:'2027-06-30'},{n:3,s:'2027-07-30',e:'2027-10-01'},{n:4,s:'2027-10-04',e:'2027-12-10'}];
 const GL={manha:'☀',tarde:'☾',ambos:'◐'};
-const VIEWNAME={inicio:'Início',mes:'Mês',agenda:'Lista',ano:'Ano',esc:'Escalas',hor:'Horários',res:'Reservas'};
+const VIEWNAME={inicio:'Início',mes:'Mês',agenda:'Lista',ano:'Ano',esc:'Sábados e reuniões',hor:'Horários',res:'Reservas'};
 
 let seq=0; const ITEMS=[];
 const Y='2027-';
